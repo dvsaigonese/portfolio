@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light" data-lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Võ Khương Duy — Data Analyst &amp; Analytics Engineering Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="css/monograph.css" />
+  <!-- Nạp Từ điển và Engine i18n -->
+  <script src="js/i18n.js"></script>
+  <script src="js/theme-lang.js"></script>
+</head>
+
+<body class="bg-alabaster text-ink font-sans antialiased selection:bg-bordeaux selection:text-white min-h-screen flex flex-col justify-between">
+
+  <!-- =====================================================================
+       1. EDITORIAL MASTHEAD
+       ===================================================================== -->
+  <header class="sticky top-0 z-40 h-16 bg-alabaster/95 backdrop-blur-md border-b border-ink/10 px-4 lg:px-10">
+    <div class="max-w-[1440px] mx-auto h-full flex items-center justify-between gap-3">
+      
+      <!-- Monogram & Name -->
+      <a href="index.html" class="flex items-center space-x-3 group">
+        <span class="w-2.5 h-2.5 rounded-full bg-bordeaux group-hover:scale-125 transition-transform"></span>
+        <span class="font-mono text-xs font-semibold tracking-[0.18em] uppercase text-ink">VÕ KHƯƠNG DUY</span>
+        <span class="hidden md:inline-block text-stone">•</span>
+        <span class="hidden md:inline-block font-mono text-[11px] text-stone uppercase tracking-wider"
+              data-i18n="nav.brand_sub">HỒ SƠ DỮ LIỆU &amp; PHÂN TÍCH</span>
+      </a>
+
+      <!-- Nav & Toggles -->
+      <div class="flex items-center space-x-4 sm:space-x-6">
+        <nav class="flex items-center space-x-4 sm:space-x-6">
+          <a href="index.html" class="font-mono text-xs uppercase tracking-widest text-ink font-semibold border-b-2 border-bordeaux py-1"
+             data-i18n="nav.portal">00. Mở Đầu</a>
+          <a href="projects.html" class="font-mono text-xs uppercase tracking-widest text-stone hover:text-ink transition-colors py-1"
+             data-i18n="nav.projects">01. Dự Án</a>
+          <a href="experience.html" class="font-mono text-xs uppercase tracking-widest text-stone hover:text-ink transition-colors py-1"
+             data-i18n="nav.experience">02. Kinh Nghiệm</a>
+        </nav>
+
+        <div class="flex items-center space-x-2 pl-2 border-l border-ink/15">
+          <button id="lang-toggle-btn" onclick="window.DAPORT_PREFS.toggleLang()"
+                  title="Switch Language (VI / EN)"
+                  class="px-2.5 py-1 bg-parchment hover:bg-parchmentDark border border-ink/15 font-mono text-[11px] cursor-pointer transition-colors">
+            VI / EN
+          </button>
+          <button id="theme-toggle-btn" onclick="window.DAPORT_PREFS.toggleTheme()"
+                  title="Toggle Light / Dark Mode"
+                  class="px-2.5 py-1 bg-parchment hover:bg-parchmentDark border border-ink/15 font-mono text-[11px] text-ink cursor-pointer transition-colors">
+            ☾ Tối
+          </button>
+          <a href="test001.pdf" target="_blank"
+             class="hidden lg:inline-block px-3 py-1 bg-ink text-alabaster hover:bg-bordeaux font-mono text-[11px] transition-colors"
+             data-i18n="nav.download_cv">Tải CV (PDF) ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       2. GREETING & LOOKBOOK PANELS
+       ===================================================================== -->
+  <main class="flex-1 max-w-[1440px] w-full mx-auto px-4 lg:px-10 py-8 lg:py-12 flex flex-col justify-center">
+
+    <!-- Greeting Hero Block -->
+    <section class="mb-9 pb-8 border-b border-ink/12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        
+        <div class="lg:col-span-8">
+          <div class="inline-flex items-center space-x-2 px-2.5 py-1 bg-parchment border border-ink/12 font-mono text-[11px] text-bordeaux uppercase tracking-widest mb-4">
+            <span>●</span>
+            <span data-i18n="home.greeting_tag">XIN CHÀO, TÔI LÀ VÕ KHƯƠNG DUY</span>
+          </div>
+
+          <h1 class="font-serif text-3xl sm:text-5xl lg:text-[3.25rem] leading-[1.15] text-ink font-normal tracking-tight"
+              data-i18n="home.hero_title">
+            Chuyên viên Phân tích Dữ liệu có nền tảng <span class="italic text-bordeaux">Kỹ thuật Phần mềm.</span>
+          </h1>
+
+          <p class="font-sans text-sm sm:text-base text-charcoal leading-relaxed mt-4 max-w-2xl"
+             data-i18n="home.hero_desc"></p>
+        </div>
+
+        <div class="lg:col-span-4 bg-parchment border border-ink/15 p-5 flex flex-col justify-between space-y-3">
+          <div class="flex items-center justify-between border-b border-ink/10 pb-2.5">
+            <span class="font-mono text-[10px] uppercase tracking-widest text-stone"
+                  data-i18n="home.dossier_title">THÔNG TIN LIÊN HỆ</span>
+            <span class="font-mono text-[10px] text-forest font-semibold"
+                  data-i18n="common.open_to_work">● Sẵn sàng nhận việc</span>
+          </div>
+
+          <div class="space-y-1.5 font-mono text-xs">
+            <div class="flex justify-between">
+              <span class="text-stone" data-i18n="home.degree_label">Học vấn:</span>
+              <span class="text-ink font-medium" data-i18n="home.degree_val">Kỹ sư Phần mềm (SGU)</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-stone" data-i18n="home.english_label">Ngoại ngữ:</span>
+              <span class="text-ink font-medium" data-i18n="home.english_val">TOEIC L&amp;R 735 · S&amp;W 300</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-stone">Email:</span>
+              <a href="mailto:vokhuongduy912@gmail.com" class="text-bordeaux hover:underline">vokhuongduy912@gmail.com</a>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-stone" data-i18n="home.phone_label">Điện thoại:</span>
+              <span class="text-ink tabular-nums">(+84) 933 012 395</span>
+            </div>
+          </div>
+
+          <div class="pt-2 border-t border-ink/10 flex items-center justify-between text-xs font-mono">
+            <span class="text-stone" data-i18n="common.hcmc">TP. Hồ Chí Minh</span>
+            <a href="test001.pdf" target="_blank" class="text-ink hover:text-bordeaux font-semibold underline underline-offset-4"
+               data-i18n="common.inspect_pdf">Xem bản PDF CV ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Two Lookbook Storefront Panels -->
+    <section aria-label="Portfolio Navigation Panels">
+      <div class="flex items-center justify-between mb-4">
+        <span class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone"
+              data-i18n="home.portal_select_hint">
+          CHỌN MỘT CHUYÊN MỤC BÊN DƯỚI ĐỂ KHÁM PHÁ CHI TIẾT
+        </span>
+        <span class="font-mono text-[11px] text-stone hidden sm:inline"
+              data-i18n="home.portal_volumes_hint">
+          02 CHUYÊN MỤC CHÍNH · TƯƠNG TÁC TRỰC TIẾP
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+
+        <!-- Panel 01: Projects Archive -->
+        <a href="projects.html" class="portal-panel group bg-parchment border border-ink/15 p-7 sm:p-9 lg:p-11 flex flex-col justify-between min-h-[400px]">
+          <div>
+            <div class="flex items-center justify-between pb-4 mb-5 border-b border-ink/10">
+              <div class="flex items-center space-x-2.5">
+                <span class="px-2.5 py-0.5 bg-bordeaux text-white font-mono text-[10px] font-semibold tracking-widest uppercase">
+                  VOLUME 01
+                </span>
+                <span class="font-mono text-xs uppercase tracking-widest text-stone"
+                      data-i18n="home.vol1_tag">KHO DỰ ÁN &amp; MÃ NGUỒN</span>
+              </div>
+              <span id="portal-folio-count" class="font-mono text-xs text-ink font-semibold tabular-nums">
+                04 Projects · 23 Files
+              </span>
+            </div>
+
+            <h2 class="font-serif text-3xl sm:text-4xl text-ink leading-[1.18] mb-3 group-hover:text-bordeaux transition-colors"
+                data-i18n="home.vol1_title"></h2>
+
+            <p class="font-sans text-sm text-charcoal leading-relaxed"
+               data-i18n="home.vol1_desc"></p>
+          </div>
+
+          <!-- 4 Quick Project Tiles -->
+          <div class="my-6 p-4 bg-alabaster border border-ink/12 grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono text-xs">
+            <div class="p-2.5 bg-parchment/70 border border-ink/10">
+              <div class="text-[9px] text-stone uppercase">01 · SQL ENGINE</div>
+              <div class="font-serif text-base font-semibold text-ink mt-0.5">24 Queries</div>
+              <div class="text-[10px] text-stone truncate" data-i18n="home.vol1_proj1_sub">Tài chính EPL 92–26</div>
+            </div>
+            <div class="p-2.5 bg-parchment/70 border border-ink/10">
+              <div class="text-[9px] text-stone uppercase">02 · POWER BI</div>
+              <div class="font-serif text-base font-semibold text-ink mt-0.5">32 Seasons</div>
+              <div class="text-[10px] text-stone truncate" data-i18n="home.vol1_proj2_sub">4 Trang Báo cáo DAX</div>
+            </div>
+            <div class="p-2.5 bg-parchment/70 border border-ink/10">
+              <div class="text-[9px] text-stone uppercase">03 · PYTHON EDA</div>
+              <div class="font-serif text-base font-semibold text-bordeaux mt-0.5">$2.69M Loss</div>
+              <div class="text-[10px] text-stone truncate" data-i18n="home.vol1_proj3_sub">Kiểm toán TheLook</div>
+            </div>
+            <div class="p-2.5 bg-parchment/70 border border-ink/10">
+              <div class="text-[9px] text-stone uppercase">04 · E2E SUITE</div>
+              <div class="font-serif text-base font-semibold text-ink mt-0.5">2.4M+ Rows</div>
+              <div class="text-[10px] text-stone truncate" data-i18n="home.vol1_proj4_sub">Star Schema &amp; BI</div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-ink/12 flex items-center justify-between">
+            <span class="font-mono text-[11px] text-stone">SQL · Python (.ipynb) · Power BI (.dax) · CSV</span>
+            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-ink group-hover:text-bordeaux transition-colors"
+                  data-i18n="common.enter_archive">Mở Kho Dự Án →</span>
+          </div>
+        </a>
+
+        <!-- Panel 02: Experience & Dossier -->
+        <a href="experience.html" class="portal-panel group bg-parchment border border-ink/15 p-7 sm:p-9 lg:p-11 flex flex-col justify-between min-h-[400px]">
+          <div>
+            <div class="flex items-center justify-between pb-4 mb-5 border-b border-ink/10">
+              <div class="flex items-center space-x-2.5">
+                <span class="px-2.5 py-0.5 bg-ink text-alabaster font-mono text-[10px] font-semibold tracking-widest uppercase">
+                  VOLUME 02
+                </span>
+                <span class="font-mono text-xs uppercase tracking-widest text-stone"
+                      data-i18n="home.vol2_tag">KINH NGHIỆM &amp; KỸ NĂNG</span>
+              </div>
+              <span class="font-mono text-xs text-ink font-semibold">
+                BEPRO11 · DOTB · Goal-Line · VGF
+              </span>
+            </div>
+
+            <h2 class="font-serif text-3xl sm:text-4xl text-ink leading-[1.18] mb-3 group-hover:text-bordeaux transition-colors"
+                data-i18n="home.vol2_title"></h2>
+
+            <p class="font-sans text-sm text-charcoal leading-relaxed"
+               data-i18n="home.vol2_desc"></p>
+          </div>
+
+          <div class="my-6 p-4 bg-alabaster border border-ink/12 space-y-2 font-mono text-xs">
+            <div class="flex items-center justify-between py-1 border-b border-ink/10">
+              <span class="text-ink font-medium" data-i18n="home.vol2_role1">1. BEPRO11 — Sports Data Analyst (800+ trận)</span>
+              <span class="text-bordeaux text-[11px] font-semibold">06/2024 – Nay</span>
+            </div>
+            <div class="flex items-center justify-between py-1 border-b border-ink/10">
+              <span class="text-ink font-medium" data-i18n="home.vol2_role2">2. DOTB — CRM Data &amp; Backend Developer (ERP)</span>
+              <span class="text-stone text-[11px]">07/2023 – 05/2024</span>
+            </div>
+            <div class="flex items-center justify-between py-1">
+              <span class="text-ink font-medium" data-i18n="home.vol2_role3">3. Goal-Line Studio &amp; VGF — Founder / Data Lead</span>
+              <span class="text-forest text-[11px] font-semibold">06/2023 – Nay</span>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-ink/12 flex items-center justify-between">
+            <span class="font-mono text-[11px] text-stone" data-i18n="home.vol2_footer_hint">Kinh nghiệm thực tế · Kỹ năng · Học vấn</span>
+            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-ink group-hover:text-bordeaux transition-colors"
+                  data-i18n="common.read_dossier">Xem Hồ Sơ Kinh Nghiệm →</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       3. COLOPHON FOOTER
+       ===================================================================== -->
+  <footer class="border-t border-ink/10 bg-parchment/50 px-4 lg:px-10 py-5">
+    <div class="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[11px] text-stone">
+      <div>
+        <span class="text-ink font-semibold">VÕ KHƯƠNG DUY</span>
+        <span class="mx-2">·</span>
+        <span>vokhuongduy912@gmail.com</span>
+        <span class="mx-2">·</span>
+        <span>(+84) 933 012 395</span>
+      </div>
+      <div class="flex items-center space-x-5">
+        <a href="projects.html" class="hover:text-ink transition-colors" data-i18n="nav.projects">01. Dự Án</a>
+        <span>·</span>
+        <a href="experience.html" class="hover:text-ink transition-colors" data-i18n="nav.experience">02. Kinh Nghiệm</a>
+        <span>·</span>
+        <a href="test001.pdf" target="_blank" class="text-ink hover:text-bordeaux transition-colors">CV (PDF) ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/manifest.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.DAPORT_MANIFEST && window.DAPORT_MANIFEST.folios) {
+        const folios = window.DAPORT_MANIFEST.folios;
+        const totalArtifacts = folios.reduce((acc, f) => acc + (f.files?.length || 0) + (f.visuals?.length || 0), 0);
+        const el = document.getElementById("portal-folio-count");
+        if (el) {
+          el.textContent = `${String(folios.length).padStart(2, "0")} Projects · ${totalArtifacts} Artifacts`;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

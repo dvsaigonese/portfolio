@@ -1,0 +1,317 @@
+/* ==========================================================================
+   CURATED DATA MONOGRAPH — LIGHT & DARK EDITORIAL DESIGN SYSTEM
+   ========================================================================== */
+
+:root,
+[data-theme="light"] {
+  --bg-alabaster: #FAF8F5;
+  --bg-parchment: #F4EFE6;
+  --bg-parchment-dark: #EAE3D5;
+  --text-ink: #191816;
+  --text-charcoal: #3D3A35;
+  --text-stone: #736F68;
+  --accent-bordeaux: #722F37;
+  --accent-bordeaux-soft: #F9F1F2;
+  --accent-forest: #2C4C38;
+  --border-hairline: rgba(25, 24, 22, 0.12);
+  --border-strong: rgba(25, 24, 22, 0.28);
+  --card-hover-shadow: 0 14px 32px rgba(25, 24, 22, 0.07);
+  --code-line-bg: rgba(244, 239, 230, 0.5);
+  --code-hover-bg: rgba(244, 239, 230, 0.75);
+  --tok-kw: #722F37;
+  --tok-fn: #1D4E56;
+  --tok-str: #2C4C38;
+  --tok-num: #8C4A27;
+  --tok-com: #8A8479;
+}
+
+/* Warm Obsidian Velvet Dark Theme — Zero Neon, Pure Quiet Luxury */
+[data-theme="dark"] {
+  --bg-alabaster: #121110;
+  --bg-parchment: #1B1917;
+  --bg-parchment-dark: #262320;
+  --text-ink: #EAE5DC;
+  --text-charcoal: #C4BDB2;
+  --text-stone: #8E877C;
+  --accent-bordeaux: #D47A82;
+  --accent-bordeaux-soft: #2A1B1D;
+  --accent-forest: #68A37E;
+  --border-hairline: rgba(234, 229, 220, 0.11);
+  --border-strong: rgba(234, 229, 220, 0.32);
+  --card-hover-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  --code-line-bg: rgba(27, 25, 23, 0.75);
+  --code-hover-bg: rgba(38, 35, 32, 0.85);
+  --tok-kw: #E08A92;
+  --tok-fn: #7AB8C2;
+  --tok-str: #82B896;
+  --tok-num: #D9A273;
+  --tok-com: #787268;
+}
+
+body {
+  background-color: var(--bg-alabaster);
+  color: var(--text-ink);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Map Tailwind semantic classes to CSS variables so Light/Dark switches effortlessly */
+.bg-alabaster { background-color: var(--bg-alabaster) !important; }
+.bg-alabaster\/95 { background-color: color-mix(in srgb, var(--bg-alabaster) 94%, transparent) !important; }
+.bg-parchment { background-color: var(--bg-parchment) !important; }
+.bg-parchment\/30 { background-color: color-mix(in srgb, var(--bg-parchment) 35%, transparent) !important; }
+.bg-parchment\/40 { background-color: color-mix(in srgb, var(--bg-parchment) 45%, transparent) !important; }
+.bg-parchment\/50 { background-color: color-mix(in srgb, var(--bg-parchment) 55%, transparent) !important; }
+.bg-parchment\/60 { background-color: color-mix(in srgb, var(--bg-parchment) 65%, transparent) !important; }
+.bg-parchment\/70 { background-color: color-mix(in srgb, var(--bg-parchment) 75%, transparent) !important; }
+.bg-parchment\/80 { background-color: color-mix(in srgb, var(--bg-parchment) 85%, transparent) !important; }
+.bg-parchmentDark { background-color: var(--bg-parchment-dark) !important; }
+.bg-ink { background-color: var(--text-ink) !important; }
+.bg-bordeaux { background-color: var(--accent-bordeaux) !important; }
+
+.text-ink { color: var(--text-ink) !important; }
+.text-alabaster { color: var(--bg-alabaster) !important; }
+.text-charcoal { color: var(--text-charcoal) !important; }
+.text-stone { color: var(--text-stone) !important; }
+.text-bordeaux { color: var(--accent-bordeaux) !important; }
+.text-forest { color: var(--accent-forest) !important; }
+
+.border-ink\/5,
+.border-ink\/10,
+.border-ink\/12,
+.border-ink\/15,
+.border-ink\/20 {
+  border-color: var(--border-hairline) !important;
+}
+.border-ink\/35,
+.border-ink\/40,
+.border-ink {
+  border-color: var(--border-strong) !important;
+}
+.border-bordeaux {
+  border-color: var(--accent-bordeaux) !important;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle Archival Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-parchment);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--text-stone);
+  opacity: 0.5;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-bordeaux);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==========================================================================
+   INDEX.HTML — LOOKBOOK SPLIT PORTAL PANELS
+   ========================================================================== */
+.portal-panel {
+  transition: background-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portal-panel:hover {
+  background-color: var(--bg-alabaster) !important;
+  border-color: var(--border-strong) !important;
+  transform: translateY(-3px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+/* Active Lens Tab Styling */
+.active-lens-tab {
+  border-bottom-color: var(--accent-bordeaux) !important;
+  color: var(--text-ink) !important;
+  font-weight: 600;
+  background-color: color-mix(in srgb, var(--bg-alabaster) 75%, transparent);
+}
+
+/* Folio Card Active State */
+.folio-card {
+  transition: all 0.18s ease;
+}
+.folio-card.active-folio {
+  background-color: var(--bg-alabaster) !important;
+  border-color: var(--border-strong) !important;
+  box-shadow: var(--card-hover-shadow);
+}
+.folio-card.active-folio .folio-badge {
+  background-color: var(--accent-bordeaux) !important;
+  color: #FFFFFF !important;
+}
+
+/* Editorial Code Block & Syntax Highlighting */
+.code-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+.code-line-num {
+  width: 44px;
+  padding: 0 12px;
+  text-align: right;
+  color: var(--text-stone);
+  user-select: none;
+  border-right: 1px solid var(--border-hairline);
+  background: var(--code-line-bg);
+}
+.code-line-text {
+  padding: 0 16px;
+  white-space: pre;
+  color: var(--text-ink);
+}
+.code-row:hover {
+  background-color: var(--code-hover-bg);
+}
+
+.tok-kw { color: var(--tok-kw); font-weight: 600; }
+.tok-fn { color: var(--tok-fn); font-weight: 500; }
+.tok-str { color: var(--tok-str); }
+.tok-num { color: var(--tok-num); }
+.tok-com { color: var(--tok-com); font-style: italic; }
+
+/* Editorial Markdown Styling for README.md */
+.monograph-prose h1 {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.85rem;
+  line-height: 1.25;
+  color: var(--text-ink);
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-hairline);
+}
+.monograph-prose h2 {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 1.35rem;
+  color: var(--text-ink);
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-hairline);
+}
+.monograph-prose h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-bordeaux);
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.monograph-prose p {
+  font-size: 0.925rem;
+  line-height: 1.75;
+  color: var(--text-charcoal);
+  margin-bottom: 1rem;
+}
+.monograph-prose ul, .monograph-prose ol {
+  margin-left: 1.25rem;
+  margin-bottom: 1.1rem;
+  color: var(--text-charcoal);
+  font-size: 0.925rem;
+  line-height: 1.7;
+}
+.monograph-prose li {
+  margin-bottom: 0.4rem;
+}
+.monograph-prose blockquote {
+  border-left: 3px solid var(--accent-bordeaux);
+  background: var(--bg-parchment);
+  padding: 0.85rem 1.15rem;
+  margin: 1.25rem 0;
+  font-style: italic;
+  color: var(--text-ink);
+}
+.monograph-prose code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  background: var(--bg-parchment-dark);
+  padding: 0.15rem 0.4rem;
+  color: var(--text-ink);
+}
+
+.monograph-hr {
+  border: 0;
+  border-top: 1px solid var(--border-hairline);
+  margin: 1.75rem 0;
+}
+
+.monograph-pre {
+  background-color: var(--bg-parchment);
+  border: 1px solid var(--border-hairline);
+  padding: 1rem 1.25rem;
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text-ink);
+}
+
+.monograph-pre code {
+  background: transparent !important;
+  padding: 0 !important;
+  font-size: 12px !important;
+  color: inherit;
+}
+
+.monograph-pre-lang {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-bordeaux);
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.monograph-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  background-color: var(--bg-alabaster);
+}
+
+.monograph-table th {
+  background-color: var(--bg-parchment);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-ink);
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--border-hairline);
+  text-align: left;
+}
+
+.monograph-table td {
+  padding: 0.65rem 0.9rem;
+  border-bottom: 1px solid var(--border-hairline);
+  color: var(--text-charcoal);
+  vertical-align: top;
+}
+
+.monograph-table tr:hover td {
+  background-color: var(--code-hover-bg);
+}

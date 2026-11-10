@@ -1,0 +1,240 @@
+/*
+==============================================================================
+PREMIER LEAGUE ANALYTICS - COMPLETE DAX MODEL
+==============================================================================
+*/
+
+// ==============================================================================
+// 1. BASE MEASURES (Stats_Matches)
+// ==============================================================================
+
+// Total match records played.
+Total_Matches = 
+COUNTROWS(Stats_Matches)
+
+// Total matches won.
+Total_Wins = 
+CALCULATE(
+    COUNTROWS(Stats_Matches),
+    Stats_Matches[points] = 3
+)
+
+// Total goals scored.
+Total_Goals = 
+SUM(Stats_Matches[goals_for])
+
+// Total goals conceded.
+Total_Goals_Against = 
+SUM(Stats_Matches[goals_against])
+
+// Total points earned as a raw numeric value.
+Total_Points_Numeric = 
+SUM(Stats_Matches[points])
+
+// Formatted points string for card display.
+Total_Points_Disp = 
+FORMAT([Total_Points_Numeric], "#,##0")
+
+// Total expected goals generated.
+Total_xG = 
+SUM(Stats_Matches[xg_for])
+
+// Total expected goals conceded.
+Total_xGA = 
+SUM(Stats_Matches[xg_against])
+
+// Ratio of matches won to total matches.
+Win_Rate = 
+DIVIDE([Total_Wins], [Total_Matches], 0)
+
+
+// ==============================================================================
+// 2. MACRO HISTORICAL MEASURES (Stats_Standing)
+// ==============================================================================
+
+// Total all-time matches across 32 seasons.
+All_Time_Matches_Numeric = 
+SUM(Stats_Standing[win]) + SUM(Stats_Standing[draw]) + SUM(Stats_Standing[lost])
+
+// Total all-time wins across 32 seasons.
+All_Time_Wins_Numeric = 
+SUM(Stats_Standing[win])
+
+// Total all-time points accumulated across 32 seasons.
+All_Time_Points_Numeric = 
+SUM(Stats_Standing[points])
+
+// All-time historical win rate.
+All_Time_Win_Rate_Numeric = 
+DIVIDE([All_Time_Wins_Numeric], [All_Time_Matches_Numeric], BLANK())
+
+// Formatted string for historical matches card.
+Disp_All_Time_Matches = 
+FORMAT([All_Time_Matches_Numeric], "#,##0")
+
+// Formatted string for historical wins card.
+Disp_All_Time_Wins = 
+FORMAT([All_Time_Wins_Numeric], "#,##0")
+
+// Formatted string for historical points card.
+Disp_All_Time_Points = 
+FORMAT([All_Time_Points_Numeric], "#,##0")
+
+// Formatted string for historical win rate card.
+Disp_All_Time_Win_Rate = 
+FORMAT([All_Time_Win_Rate_Numeric], "0.0%")
+
+// 32-year running total of cumulative league points.
+Cumulative_Points = 
+CALCULATE(
+    SUM(Stats_Standing[points]),
+    FILTER(
+        ALL(Dim_Season), 
+        Dim_Season[season_int] <= MAX(Dim_Season[season_int])
+    )
+)
+
+
+// ==============================================================================
+// 3. ADVANCED STRATEGIC & EXPECTED METRICS
+// ==============================================================================
+
+// Finishing over/underperformance relative to xG (2017/18 onwards).
+xG_Delta = 
+SUMX(
+    VALUES(Dim_Season[season_text]),
+    VAR Season_xG = [Total_xG]
+    VAR Season_Goals = [Total_Goals]
+    RETURN
+        IF(
+            NOT ISBLANK(Season_xG) && Season_xG > 0,
+            Season_Goals - Season_xG,
+            BLANK()
+        )
+)
+
+// Shot prevention and goalkeeping delta relative to xGA (2017/18 onwards).
+xGA_Delta = 
+SUMX(
+    VALUES(Dim_Season[season_text]),
+    VAR Season_xGA = [Total_xGA]
+    VAR Season_GA = [Total_Goals_Against]
+    RETURN
+        IF(
+            NOT ISBLANK(Season_xGA) && Season_xGA > 0,
+            Season_xGA - Season_GA,
+            BLANK()
+        )
+)
+
+// Win rate restricted strictly to head-to-head Big Six matches.
+Big6_H2H_Win_Rate = 
+CALCULATE(
+    [Win_Rate],
+    Stats_Matches[opponent] IN {"Arsenal", "Chelsea", "Liverpool", "Manchester City", "Manchester Utd", "Tottenham"}
+)
+
+// Average points earned per match against Big Six opponents.
+PPG_vs_Big6 = 
+DIVIDE(
+    CALCULATE(SUM(Stats_Matches[points]), Stats_Matches[is_big6_opponent] = "Big 6"),
+    CALCULATE(COUNTROWS(Stats_Matches), Stats_Matches[is_big6_opponent] = "Big 6"),
+    0
+)
+
+// Average points earned per match against non-Big Six opponents.
+PPG_vs_Rest = 
+DIVIDE(
+    CALCULATE(SUM(Stats_Matches[points]), Stats_Matches[is_big6_opponent] = "Non-Big 6"),
+    CALCULATE(COUNTROWS(Stats_Matches), Stats_Matches[is_big6_opponent] = "Non-Big 6"),
+    0
+)
+
+// Flags champions dynamically via virtual relationship to standings.
+Is_Champion = 
+VAR CurrentTeam = SELECTEDVALUE(Stats_Matches[team_name])
+VAR CurrentSeason = SELECTEDVALUE(Stats_Matches[season])
+VAR RankValue = 
+    CALCULATE(
+        MAX(Stats_Standing[season_rank]),
+        TREATAS({CurrentTeam}, Stats_Standing[team]),
+        TREATAS({CurrentSeason}, Stats_Standing[season])
+    )
+RETURN
+    IF(RankValue = 1, 1, BLANK())
+
+// Calculates dropped points margin specifically against non-Big Six teams.
+Points_Dropped = 
+IF(
+    ISFILTERED(Stats_Matches[team_season]),
+    VAR Big6 = {"Arsenal", "Chelsea", "Liverpool", "Manchester City", "Manchester Utd", "Tottenham"}
+    VAR NonBig6Matches = FILTER(Stats_Matches, NOT(Stats_Matches[opponent] IN Big6))
+    VAR Dropped = SUMX(NonBig6Matches, 3 - Stats_Matches[points])
+    RETURN
+        IF(Dropped > 0, Dropped, BLANK()),
+    BLANK()
+)
+
+// Total points won directly from head-to-head Big Six fixtures.
+Points_vs_Rivals = 
+IF(
+    ISFILTERED(Stats_Matches[team_season]),
+    VAR Big6 = {"Arsenal", "Chelsea", "Liverpool", "Manchester City", "Manchester Utd", "Tottenham"}
+    RETURN
+        CALCULATE(
+            SUM(Stats_Matches[points]),
+            KEEPFILTERS(Stats_Matches[opponent] IN Big6)
+        ),
+    BLANK()
+)
+
+
+// ==============================================================================
+// 4. DYNAMIC TOOLTIP & UI TITLES
+// ==============================================================================
+
+// Dynamic title for the dropped points breakdown table.
+Title_Dropped_Table = 
+IF(
+    ISFILTERED(Stats_Matches[team_season]),
+    "Points Dropped Breakdown: " & SELECTEDVALUE(Stats_Matches[team_season]),
+    "Select a champion on the scatter plot to view dropped points"
+)
+
+// Dynamic title for the head-to-head Big Six breakdown table.
+Title_H2H_Table = 
+IF(
+    ISFILTERED(Stats_Matches[team_season]),
+    "Head-to-Head vs. Big 6: " & SELECTEDVALUE(Stats_Matches[team_season]),
+    "Select a champion on the scatter plot to view H2H breakdown"
+)
+
+
+// ==============================================================================
+// 5. CALCULATED COLUMNS
+// ==============================================================================
+
+// Short 3-letter acronym mapping for team names.
+team_short = 
+SWITCH(
+    Dim_Team[team_name],
+    "Manchester Utd", "MUN",
+    "Manchester City", "MCI",
+    "Tottenham", "TOT",
+    "Arsenal", "ARS",
+    "Chelsea", "CHE",
+    "Liverpool", "LIV",
+    Dim_Team[team_name]
+)
+
+// Categorical flag identifying Big Six vs non-Big Six opposition.
+is_big6_opponent = 
+IF(
+    Stats_Matches[opponent] IN {"Arsenal", "Chelsea", "Liverpool", "Manchester City", "Manchester Utd", "Tottenham"},
+    "Big 6",
+    "Non-Big 6"
+)
+
+// Combined team acronym and season string for chart axis drilldowns.
+team_season = 
+RELATED(Dim_Team[team_short]) & " " & Stats_Matches[season]

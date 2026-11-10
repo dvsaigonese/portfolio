@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="light" data-lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kho Dự Án &amp; Mã Nguồn — Võ Khương Duy</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="css/monograph.css" />
+  <!-- Nạp Từ điển và Engine i18n -->
+  <script src="js/i18n.js"></script>
+  <script src="js/theme-lang.js"></script>
+</head>
+
+<body class="bg-alabaster text-ink font-sans antialiased selection:bg-bordeaux selection:text-white min-h-screen flex flex-col">
+
+  <!-- =====================================================================
+       1. EDITORIAL MASTHEAD
+       ===================================================================== -->
+  <header class="sticky top-0 z-40 h-16 bg-alabaster/95 backdrop-blur-md border-b border-ink/10 px-4 lg:px-8">
+    <div class="max-w-[1560px] mx-auto h-full flex items-center justify-between gap-3">
+      
+      <div class="flex items-center space-x-3">
+        <a href="index.html" class="flex items-center space-x-3 group">
+          <span class="w-2.5 h-2.5 rounded-full bg-bordeaux group-hover:scale-125 transition-transform"></span>
+          <span class="font-mono text-xs font-semibold tracking-[0.18em] uppercase text-ink">VÕ KHƯƠNG DUY</span>
+        </a>
+        <span class="hidden xl:inline-block text-stone">•</span>
+        <span id="masthead-folio-count" class="hidden xl:inline-block font-mono text-[11px] text-stone uppercase tracking-wider">
+          VOLUME 01 · 04 COMPLETE CASE STUDIES
+        </span>
+      </div>
+
+      <div class="flex items-center space-x-4 sm:space-x-6">
+        <nav class="flex items-center space-x-4 sm:space-x-6">
+          <a href="index.html" class="font-mono text-xs uppercase tracking-widest text-stone hover:text-ink transition-colors py-1"
+             data-i18n="nav.portal">00. Mở Đầu</a>
+          <a href="projects.html" class="font-mono text-xs uppercase tracking-widest text-ink font-semibold border-b-2 border-bordeaux py-1"
+             data-i18n="nav.projects">01. Dự Án</a>
+          <a href="experience.html" class="font-mono text-xs uppercase tracking-widest text-stone hover:text-ink transition-colors py-1"
+             data-i18n="nav.experience">02. Kinh Nghiệm</a>
+        </nav>
+
+        <div class="flex items-center space-x-2 pl-2 border-l border-ink/15">
+          <button id="lang-toggle-btn" onclick="window.DAPORT_PREFS.toggleLang()"
+                  class="px-2.5 py-1 bg-parchment hover:bg-parchmentDark border border-ink/15 font-mono text-[11px] cursor-pointer">
+            VI / EN
+          </button>
+          <button id="theme-toggle-btn" onclick="window.DAPORT_PREFS.toggleTheme()"
+                  class="px-2.5 py-1 bg-parchment hover:bg-parchmentDark border border-ink/15 font-mono text-[11px] text-ink cursor-pointer">
+            ☾ Tối
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       2. WORKSPACE CONTAINER
+       ===================================================================== -->
+  <main class="flex-1 max-w-[1560px] w-full mx-auto px-4 lg:px-8 pt-6 pb-16">
+
+    <!-- Collapsible Project Banner -->
+    <section id="monograph-banner" class="mb-7">
+      <div class="bg-parchment border border-ink/12 p-5 lg:p-6">
+        
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-ink/10">
+          <div class="flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-[11px] tracking-widest uppercase text-stone">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-bordeaux"></span>
+            <span class="font-semibold text-ink" data-i18n="projects.volume_tag">
+              VOLUME 01 · KHO LƯU TRỮ DỰ ÁN PHÂN TÍCH DỮ LIỆU
+            </span>
+            <span>•</span>
+            <span>PYTHON · MYSQL STAR SCHEMA · POWER BI · DAX</span>
+          </div>
+
+          <button onclick="toggleDossierBanner()" id="banner-toggle-btn"
+                  class="font-mono text-[11px] text-stone hover:text-ink transition-colors flex items-center space-x-1.5 cursor-pointer select-none">
+            <span id="banner-toggle-icon">[ — ]</span>
+            <span id="banner-toggle-text" class="uppercase tracking-wider" data-i18n="projects.toggle_minimize">
+              Thu gọn Banner
+            </span>
+          </button>
+        </div>
+
+        <div id="banner-body" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          
+          <div class="lg:col-span-5 border-b lg:border-b-0 lg:border-r border-ink/10 pb-4 lg:pb-0 lg:pr-6">
+            <span class="font-mono text-[10px] tracking-[0.18em] uppercase text-bordeaux font-semibold block mb-1"
+                  data-i18n="projects.banner_sub">
+              TRÌNH DUYỆT MÃ NGUỒN &amp; BÁO CÁO TRỰC TIẾP
+            </span>
+            <h1 class="font-serif text-2xl sm:text-3xl leading-[1.2] text-ink font-normal"
+                data-i18n="projects.banner_h1"></h1>
+          </div>
+
+          <div class="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-ink/10 pb-4 lg:pb-0 lg:pr-6">
+            <p class="font-sans text-xs sm:text-[13px] text-charcoal leading-relaxed"
+               data-i18n="projects.banner_desc"></p>
+          </div>
+
+          <div class="lg:col-span-3 grid grid-cols-3 gap-2.5">
+            <div class="bg-alabaster border border-ink/10 p-3">
+              <div class="font-mono text-[9px] uppercase tracking-wider text-stone" data-i18n="projects.metric_events">Dữ liệu Clickstream</div>
+              <div class="font-serif text-xl font-semibold text-ink tabular-nums mt-0.5">2.4M+</div>
+              <div class="font-mono text-[9px] text-stone mt-0.5">Python ETL</div>
+            </div>
+            <div class="bg-alabaster border border-ink/10 p-3">
+              <div class="font-mono text-[9px] uppercase tracking-wider text-stone" data-i18n="projects.metric_leakage">Thất thoát GMV</div>
+              <div class="font-serif text-xl font-semibold text-bordeaux tabular-nums mt-0.5">$2.69M</div>
+              <div class="font-mono text-[9px] text-bordeaux mt-0.5">25.01% GMV</div>
+            </div>
+            <div class="bg-alabaster border border-ink/10 p-3">
+              <div class="font-mono text-[9px] uppercase tracking-wider text-stone" data-i18n="projects.metric_span">Chuỗi Thời Gian</div>
+              <div class="font-serif text-xl font-semibold text-ink tabular-nums mt-0.5">34 Yrs</div>
+              <div class="font-mono text-[9px] text-stone mt-0.5">EPL 1992–2026</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Folio Cards Strip -->
+    <section class="mb-7">
+      <div class="flex items-center justify-between mb-2.5">
+        <span class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone"
+              data-i18n="projects.folio_strip_title">
+          CHỌN MỘT DỰ ÁN ĐỂ XEM TOÀN BỘ FILE VÀ BÁO CÁO BÊN TRONG
+        </span>
+        <button onclick="toggleTreeScope()" id="tree-scope-btn"
+                class="font-mono text-[11px] text-ink hover:text-bordeaux transition-colors cursor-pointer"
+                data-i18n="projects.tree_mode_scoped">
+          [ Chế độ: Chỉ hiện Folder đang chọn ]
+        </button>
+      </div>
+
+      <div id="folio-selector-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+        <!-- Populated by js/app.js -->
+      </div>
+    </section>
+
+    <!-- Interactive Repository Workspace -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 border border-ink/15 bg-alabaster shadow-sm min-h-[680px]">
+
+      <!-- Left File Tree -->
+      <aside class="lg:col-span-3 border-b lg:border-b-0 lg:border-r border-ink/12 bg-parchment/50 flex flex-col">
+        <div class="p-3.5 border-b border-ink/10 bg-parchment">
+          <div class="flex items-center justify-between mb-2.5">
+            <div class="flex items-center space-x-2 font-mono text-xs font-medium text-ink">
+              <span data-i18n="projects.files_label">Cây Thư Mục</span>
+              <span class="px-1.5 py-0.5 text-[10px] bg-parchmentDark text-charcoal border border-ink/10">main</span>
+            </div>
+            <span id="active-folder-short" class="font-mono text-[10px] text-stone truncate max-w-[140px]">DAport</span>
+          </div>
+
+          <div class="relative">
+            <input type="text" id="file-search-input" oninput="handleFileSearch(this.value)"
+                   data-i18n-placeholder="projects.search_placeholder"
+                   placeholder="Tìm nhanh file (.sql, .ipynb, .dax)..."
+                   class="w-full bg-alabaster border border-ink/15 px-2.5 py-1.5 font-mono text-xs text-ink placeholder:text-stone focus:outline-none focus:border-bordeaux" />
+          </div>
+        </div>
+
+        <div id="file-tree-container" class="flex-1 overflow-y-auto p-2.5 space-y-1 max-h-[560px] lg:max-h-[680px]">
+          <!-- Populated by js/app.js -->
+        </div>
+
+        <div class="p-3 border-t border-ink/10 bg-parchment/80 font-mono text-[10px] text-stone flex items-center justify-between">
+          <span>VÕ KHƯƠNG DUY · ARCHIVE</span>
+          <span id="total-files-counter" class="text-ink font-medium">23 Artifacts</span>
+        </div>
+      </aside>
+
+      <!-- Right Lens Viewer -->
+      <div class="lg:col-span-9 flex flex-col bg-alabaster">
+
+        <!-- Breadcrumb & Copy -->
+        <div class="px-5 py-3 border-b border-ink/10 bg-parchment/30 flex flex-wrap items-center justify-between gap-3">
+          <div id="viewer-breadcrumb" class="font-mono text-xs text-stone truncate">
+            DAport / 04-E2E-TheLook_eCommerce_Warehouse_and_BI_Suite
+          </div>
+
+          <div class="flex items-center space-x-2.5">
+            <span id="viewer-file-meta" class="font-mono text-[11px] text-stone">STAR SCHEMA · BI SUITE</span>
+            <button onclick="copyCurrentArtifact()" id="copy-artifact-btn"
+                    class="px-2.5 py-1 bg-parchment hover:bg-parchmentDark border border-ink/15 font-mono text-[11px] text-ink transition-colors cursor-pointer"
+                    data-i18n="common.copy_code">
+              Sao chép Code
+            </button>
+            <a id="github-direct-link" href="https://github.com/" target="_blank" rel="noopener"
+               class="px-2.5 py-1 bg-ink hover:bg-bordeaux text-alabaster font-mono text-[11px] transition-colors">
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- 5 Quick-Lens Tabs -->
+        <div class="px-5 border-b border-ink/12 bg-parchment/60 flex items-center overflow-x-auto no-scrollbar">
+          <button onclick="switchLensTab('visuals')" id="tab-btn-visuals"
+                  class="lens-tab active-lens-tab font-mono text-xs py-3 px-4 border-b-2 transition-colors whitespace-nowrap cursor-pointer"
+                  data-i18n="projects.tab_visuals">
+            01. Biểu Đồ &amp; Dashboard
+          </button>
+          <button onclick="switchLensTab('brief')" id="tab-btn-brief"
+                  class="lens-tab font-mono text-xs py-3 px-4 border-b-2 border-transparent text-stone hover:text-ink transition-colors whitespace-nowrap cursor-pointer"
+                  data-i18n="projects.tab_brief">
+            02. Tóm Tắt Nhanh (Đọc 5s)
+          </button>
+          <button onclick="switchLensTab('code')" id="tab-btn-code"
+                  class="lens-tab font-mono text-xs py-3 px-4 border-b-2 border-transparent text-stone hover:text-ink transition-colors whitespace-nowrap cursor-pointer"
+                  data-i18n="projects.tab_code">
+            03. Mã Nguồn &amp; Notebook (.SQL / .PY / .IPYNB / .DAX)
+          </button>
+          <button onclick="switchLensTab('data')" id="tab-btn-data"
+                  class="lens-tab font-mono text-xs py-3 px-4 border-b-2 border-transparent text-stone hover:text-ink transition-colors whitespace-nowrap cursor-pointer"
+                  data-i18n="projects.tab_data">
+            04. Dữ Liệu Mẫu (.CSV 10 Dòng)
+          </button>
+          <button onclick="switchLensTab('readme')" id="tab-btn-readme"
+                  class="lens-tab font-mono text-xs py-3 px-4 border-b-2 border-transparent text-stone hover:text-ink transition-colors whitespace-nowrap cursor-pointer"
+                  data-i18n="projects.tab_readme">
+            05. Bài Viết Đầy Đủ (README.md)
+          </button>
+        </div>
+
+        <!-- Dynamic Stage -->
+        <div id="viewer-stage" class="flex-1 p-5 lg:p-8 overflow-y-auto">
+          <!-- Populated dynamically by js/app.js -->
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Fullscreen Modal -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 lg:p-10">
+    <div class="bg-alabaster border border-ink/20 max-w-6xl w-full max-h-[92vh] flex flex-col shadow-2xl">
+      <div class="px-5 py-3.5 border-b border-ink/12 bg-parchment flex items-center justify-between">
+        <div>
+          <span id="lightbox-folio-tag" class="font-mono text-[10px] uppercase tracking-widest text-bordeaux block">VISUAL MONOGRAPH PLATE</span>
+          <h3 id="lightbox-title" class="font-serif text-lg text-ink">Artifact Inspection</h3>
+        </div>
+        <button onclick="closeLightbox()" class="px-3 py-1 bg-ink text-alabaster hover:bg-bordeaux font-mono text-xs cursor-pointer"
+                data-i18n="common.close">
+          [ Đóng ]
+        </button>
+      </div>
+      <div id="lightbox-body" class="p-6 overflow-y-auto flex-1 flex flex-col items-center justify-center bg-parchment/30">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <script src="js/manifest.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
