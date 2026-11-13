@@ -1,356 +1,502 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="light" data-lang="vi">
+<html lang="en" data-theme="light" data-lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kinh Nghiệm &amp; Hồ Sơ Năng Lực — Võ Khương Duy</title>
+  <title>Kinh Nghiệm &amp; Câu Chuyện Thực Chiến - Võ Khương Duy</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['Newsreader', 'Georgia', 'serif'],
-            sans: ['Plus Jakarta Sans', '-apple-system', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          }
-        }
-      }
+      darkMode: ['selector', '[data-theme="dark"]']
     };
   </script>
 
   <link rel="stylesheet" href="css/monograph.css" />
-  <!-- Nạp Từ điển và Engine i18n -->
   <script src="js/i18n.js"></script>
   <script src="js/theme-lang.js"></script>
 </head>
 
-<body class="bg-alabaster text-ink font-sans antialiased selection:bg-bordeaux selection:text-white min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between p-4 sm:p-6 lg:p-10 max-w-[1420px] mx-auto">
 
-  <!-- =====================================================================
-       1. EDITORIAL MASTHEAD
-       ===================================================================== -->
-  <header class="sticky top-0 z-40 h-16 bg-alabaster/95 backdrop-blur-md border-b border-ink/10 px-4 lg:px-10">
-    <div class="max-w-[1440px] mx-auto h-full flex items-center justify-between gap-3">
-      
-      <a href="index.html" class="flex items-center space-x-3 group">
-        <span class="w-2.5 h-2.5 rounded-full bg-bordeaux group-hover:scale-125 transition-transform"></span>
-        <span class="font-mono text-xs font-semibold tracking-[0.18em] uppercase text-ink">VÕ KHƯƠNG DUY</span>
-        <span class="hidden md:inline-block text-stone">•</span>
-        <span class="hidden md:inline-block font-mono text-[11px] text-stone uppercase tracking-wider"
-              data-i18n="nav.brand_sub">VOLUME 02 · HỒ SƠ KINH NGHIỆM</span>
+  <div class="celestial-backdrop">
+    <div class="lunar-orb-primary"></div>
+    <div class="lunar-orb-secondary"></div>
+  </div>
+
+  <!-- 1. FLOATING NAVIGATION BAR -->
+  <header class="floating-nav w-full py-3.5 px-4 sm:px-7 mb-10 sm:mb-14 z-30 relative reveal-up">
+    <div class="flex items-center justify-between gap-2">
+      <a href="index.html" class="flex items-center space-x-2.5">
+        <span class="w-3.5 h-3.5 rounded-[4px] inline-block" style="background-color: var(--text-main);"></span>
+        <span class="font-extrabold text-base sm:text-lg tracking-tight text-main">VKDuy.</span>
       </a>
 
-      <div class="flex items-center space-x-4 sm:space-x-6">
-        <nav class="flex items-center space-x-4 sm:space-x-6">
-          <a href="index.html" class="font-mono text-xs uppercase tracking-widest text-stone hover:text-ink transition-colors py-1"
-             data-i18n="nav.portal">00. Mở Đầu</a>
-          <a href="projects.html" class="font-mono text-xs uppercase tracking-widest text-stone hover:text-ink transition-colors py-1"
-             data-i18n="nav.projects">01. Dự Án</a>
-          <a href="experience.html" class="font-mono text-xs uppercase tracking-widest text-ink font-semibold border-b-2 border-bordeaux py-1"
-             data-i18n="nav.experience">02. Kinh Nghiệm</a>
-        </nav>
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold">
+        <a href="index.html" class="text-muted hover:text-main transition-colors" data-i18n="nav.portal">00. Mở Đầu</a>
+        <a href="projects.html" class="text-muted hover:text-main transition-colors" data-i18n="nav.projects">01. Dự Án</a>
+        <a href="experience.html" class="text-main font-extrabold underline underline-offset-8 decoration-2" data-i18n="nav.experience">02. Kinh Nghiệm</a>
+      </nav>
 
-        <div class="flex items-center space-x-2 pl-2 border-l border-ink/15">
-          <button id="lang-toggle-btn" onclick="window.DAPORT_PREFS.toggleLang()"
-                  class="px-2.5 py-1 bg-parchment hover:bg-parchmentDark border border-ink/15 font-mono text-[11px] cursor-pointer">
-            VI / EN
-          </button>
-          <button id="theme-toggle-btn" onclick="window.DAPORT_PREFS.toggleTheme()"
-                  class="px-2.5 py-1 bg-parchment hover:bg-parchmentDark border border-ink/15 font-mono text-[11px] text-ink cursor-pointer">
-            ☾ Tối
-          </button>
-          <a href="test001.pdf" target="_blank"
-             class="hidden lg:inline-block px-3 py-1 bg-ink text-alabaster hover:bg-bordeaux font-mono text-[11px] transition-colors"
-             data-i18n="nav.download_cv">Tải CV (PDF) ↗</a>
-        </div>
+      <!-- Controls -->
+      <div class="flex items-center space-x-2">
+        <button onclick="window.DAPORT_PREFS.toggleLang()" id="lang-toggle-btn" class="btn-pill">
+          VI / EN
+        </button>
+        <button onclick="window.DAPORT_PREFS.toggleTheme()" id="theme-toggle-btn" class="btn-pill">
+          Sáng
+        </button>
       </div>
     </div>
+
+    <!-- Mobile Nav -->
+    <nav class="flex md:hidden items-center justify-around pt-2.5 mt-2.5 border-t border-neutral-200 dark:border-neutral-800 text-xs font-semibold">
+      <a href="index.html" class="text-muted py-1" data-i18n="nav.portal">00. Mở Đầu</a>
+      <a href="projects.html" class="text-muted py-1" data-i18n="nav.projects">01. Dự Án</a>
+      <a href="experience.html" class="text-main font-extrabold underline underline-offset-4 decoration-2 py-1" data-i18n="nav.experience">02. Kinh Nghiệm</a>
+    </nav>
   </header>
 
-  <!-- =====================================================================
-       2. DOSSIER CONTENT
-       ===================================================================== -->
-  <main class="flex-1 max-w-[1440px] w-full mx-auto px-4 lg:px-10 py-10 lg:py-12 space-y-12">
+  <!-- 2. MAIN CONTENT -->
+  <main class="flex-1 w-full space-y-14 sm:space-y-16 relative z-10">
 
-    <!-- Section 01: Professional Identity -->
-    <section class="bg-parchment border border-ink/15 p-7 sm:p-10">
-      <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-6 border-b border-ink/10 font-mono text-[11px] uppercase tracking-widest text-stone">
-        <div class="flex items-center space-x-2">
-          <span class="w-1.5 h-1.5 rounded-full bg-bordeaux"></span>
-          <span class="text-ink font-semibold" data-i18n="experience.sec1_tag">PHẦN 01 · ĐỊNH VỊ BẢN THÂN</span>
-        </div>
-        <span>VÕ KHƯƠNG DUY · TP. HỒ CHÍ MINH</span>
-      </div>
-
+    <!-- HERO SECTION (Đã bỏ 3 cục số, thay bằng thanh footer mỏng đồng bộ với trang chủ) -->
+    <section class="pt-2 pb-2 reveal-up delay-1">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         <div class="lg:col-span-7 space-y-4">
-          <h1 class="font-serif text-3xl sm:text-4xl leading-[1.2] text-ink font-normal"
-              data-i18n="experience.sec1_h1"></h1>
-          <p class="font-sans text-sm sm:text-[15px] text-charcoal leading-relaxed"
-             data-i18n="experience.sec1_p1"></p>
-          <p class="font-sans text-sm sm:text-[15px] text-charcoal leading-relaxed"
-             data-i18n="experience.sec1_p2"></p>
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bento-card-subtle text-[11px] font-bold uppercase tracking-wider text-main">
+            <span class="w-2 h-2 rounded-full" style="background-color: var(--accent-highlight);"></span>
+            <span data-i18n="experience.sec1_tag">VOLUME 02 - CÂU CHUYỆN CỦA TÔI</span>
+          </div>
+          <h1 class="text-5xl sm:text-7xl lg:text-[6.2rem] font-extrabold tracking-[-0.04em] leading-[0.94] text-main">
+            Career<br>Journey.
+          </h1>
+          <p class="text-xs sm:text-sm font-bold text-sub tracking-wider pt-2 uppercase" data-i18n="experience.hero_subtitle">
+            FROM BACKEND DATABASE HYGIENE TO EXECUTIVE DATA STORYTELLING
+          </p>
         </div>
 
-        <!-- 3 Core Strengths -->
-        <div class="lg:col-span-5 grid grid-cols-1 gap-3.5">
-          <div class="p-4 bg-alabaster border border-ink/12">
-            <span class="font-mono text-[10px] uppercase tracking-widest text-bordeaux font-semibold block mb-1"
-                  data-i18n="experience.pillar1_tag">THẾ MẠNH 01 · TƯ DUY DỮ LIỆU TỪ GỐC (DATABASE &amp; ETL)</span>
-            <p class="font-sans text-xs text-charcoal leading-relaxed"
-               data-i18n="experience.pillar1_desc"></p>
+        <div class="lg:col-span-5 bento-card p-6 sm:p-8 flex flex-col justify-between space-y-5">
+          <div class="space-y-3.5">
+            <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="experience.sec1"></p>
           </div>
 
-          <div class="p-4 bg-alabaster border border-ink/12">
-            <span class="font-mono text-[10px] uppercase tracking-widest text-ink font-semibold block mb-1"
-                  data-i18n="experience.pillar2_tag">THẾ MẠNH 02 · ĐỌC SỐ LIỆU &amp; VIẾT BÁO CÁO KHÁCH HÀNG</span>
-            <p class="font-sans text-xs text-charcoal leading-relaxed"
-               data-i18n="experience.pillar2_desc"></p>
-          </div>
-
-          <div class="p-4 bg-alabaster border border-ink/12">
-            <span class="font-mono text-[10px] uppercase tracking-widest text-forest font-semibold block mb-1"
-                  data-i18n="experience.pillar3_tag">THẾ MẠNH 03 · TỰ CHỦ CÔNG CỤ &amp; LÀM VIỆC LIÊN PHÒNG BAN</span>
-            <p class="font-sans text-xs text-charcoal leading-relaxed"
-               data-i18n="experience.pillar3_desc"></p>
+          <div class="pt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between text-xs font-semibold text-sub">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span data-i18n="experience.hero_card_footer">Software Engineering - Data Analytics</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Section 02: Work Experience -->
-    <section>
-      <div class="flex flex-wrap items-center justify-between gap-4 pb-3 mb-6 border-b border-ink/15">
+    <!-- TIMELINE & ARTIFACT VAULTS -->
+    <section class="space-y-10 reveal-up delay-2">
+      <div class="flex flex-wrap items-end justify-between gap-4 pb-4 border-b border-neutral-300 dark:border-neutral-800">
         <div>
-          <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-bordeaux font-semibold block"
-                data-i18n="experience.sec2_tag">PHẦN 02 · KINH NGHIỆM LÀM VIỆC THỰC TẾ</span>
-          <h2 class="font-serif text-2xl sm:text-3xl text-ink mt-0.5"
-              data-i18n="experience.sec2_h2">Quá Trình Làm Việc &amp; Dự Án Thực Chiến</h2>
+          <span class="text-xs font-bold uppercase tracking-wider text-sub block" data-i18n="experience.sec2_tag">
+            LỊCH SỬ LÀM VIỆC
+          </span>
+          <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-main mt-1" data-i18n="experience.sec2_h2">
+            Experience.
+          </h2>
         </div>
-        <a href="projects.html" class="px-3.5 py-1.5 bg-ink text-alabaster hover:bg-bordeaux font-mono text-xs transition-colors"
-           data-i18n="experience.inspect_projects_btn">
-          Xem 04 Dự Án Kỹ Thuật (SQL/Python/BI) →
-        </a>
+        <div class="flex flex-wrap items-center gap-2.5">
+          <a href="assets/CV.pdf" target="_blank" class="btn-pill" data-i18n="common.open_pdf">
+            Mở file PDF CV
+          </a>
+          <a href="projects.html" class="btn-pill btn-pill-solid" data-i18n="experience.inspect_projects_btn">
+            Khám phá 04 Dự Án Kỹ Thuật
+          </a>
+        </div>
       </div>
 
-      <div class="space-y-6">
+      <div class="relative pl-4 sm:pl-8 border-l-2 border-neutral-300 dark:border-neutral-800 space-y-14">
 
-        <!-- Role 01: BEPRO11 -->
-        <article class="bg-alabaster border border-ink/15 p-6 sm:p-8">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <div class="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-ink/10 pb-4 lg:pb-0 lg:pr-6 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between gap-2">
-                  <span class="px-2 py-0.5 bg-bordeaux text-white font-mono text-[10px] font-semibold uppercase tracking-wider">
-                    06/2024 – PRESENT[cite: 12]
-                  </span>
-                  <span class="font-mono text-[11px] text-stone" data-i18n="experience.bepro_loc">Seoul / TP.HCM (Remote linh hoạt)</span>
-                </div>
-                <h3 class="font-serif text-xl sm:text-2xl text-ink font-medium mt-2.5"
-                    data-i18n="experience.bepro_role">Sports Data Analyst[cite: 12]</h3>
-                <div class="font-mono text-xs text-bordeaux font-semibold mt-0.5"
-                     data-i18n="experience.bepro_company">BEPRO11 · Phân tích Hiệu suất &amp; Dữ liệu Sự kiện[cite: 12]</div>
+        <!-- CHAPTER 01: BEPRO11 -->
+        <div class="exp-ledger-group relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start">
+          <span class="timeline-node absolute -left-[23px] sm:-left-[39px] top-2"></span>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="flex items-center space-x-3">
+              <span class="text-4xl font-black tracking-tighter opacity-25 text-main">01</span>
+              <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bento-card-dark">
+                06/2024 - PRESENT
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-extrabold text-main" data-i18n="experience.bepro_role">
+                Sports Data Analyst
+              </h3>
+              <div class="text-xs sm:text-sm font-bold mt-0.5 text-highlight" data-i18n="experience.bepro_company">
+                BEPRO11 - Global Sports Data &amp; Video Analytics
               </div>
-
-              <div class="mt-4 pt-3 border-t border-ink/10 space-y-1 font-mono text-[11px] text-stone">
-                <div><strong class="text-ink">Scope:</strong> 800,000+ Data Points · 800+ Matches[cite: 12]</div>
-                <div><strong class="text-ink">Leagues:</strong> La Liga, Serie A, K-League, J-League[cite: 12]</div>
-                <div><strong class="text-ink">SLA &amp; QA:</strong> 85%+ Accuracy · 3.5-Hour Turnaround[cite: 12]</div>
+              <div class="text-xs text-sub mt-0.5" data-i18n="experience.bepro_loc">
+                TP. Hồ Chí Minh
               </div>
             </div>
 
-            <div class="lg:col-span-8 space-y-3">
-              <p class="font-sans text-sm text-charcoal leading-relaxed"
-                 data-i18n="experience.bepro_desc"></p>
-              <ul class="list-disc ml-5 space-y-2 font-sans text-xs sm:text-sm text-charcoal leading-relaxed">
-                <li data-i18n="experience.bepro_bullet1"></li>
-                <li data-i18n="experience.bepro_bullet2"></li>
-                <li data-i18n="experience.bepro_bullet3"></li>
-              </ul>
+            <!-- Tech Stack Chips cho BEPRO11 -->
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip">SQL</span>
+              <span class="skill-chip">Python (Pandas, Seaborn)</span>
+              <span class="skill-chip">Data QA &amp; Reporting</span>
             </div>
           </div>
-        </article>
 
-        <!-- Role 02: DOTB -->
-        <article class="bg-alabaster border border-ink/15 p-6 sm:p-8">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <div class="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-ink/10 pb-4 lg:pb-0 lg:pr-6 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between gap-2">
-                  <span class="px-2 py-0.5 bg-parchmentDark text-ink font-mono text-[10px] font-semibold uppercase tracking-wider">
-                    07/2023 – 05/2024[cite: 12]
+          <div class="lg:col-span-8 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bento-card p-5 sm:p-6 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-sub" data-i18n="experience.label_challenge">
+                    VẤN ĐỀ
                   </span>
-                  <span class="font-mono text-[11px] text-stone" data-i18n="experience.dotb_loc">TP. Hồ Chí Minh (On-site)[cite: 12]</span>
+                  <span class="text-xs font-mono font-bold text-sub">01.A</span>
                 </div>
-                <h3 class="font-serif text-xl sm:text-2xl text-ink font-medium mt-2.5"
-                    data-i18n="experience.dotb_role">CRM Data &amp; Backend Developer[cite: 12]</h3>
-                <div class="font-mono text-xs text-bordeaux font-semibold mt-0.5"
-                     data-i18n="experience.dotb_company">DOTB · Giải pháp ERP &amp; CRM Giáo dục[cite: 12]</div>
+                <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="experience.bepro_challenge"></p>
               </div>
 
-              <div class="mt-4 pt-3 border-t border-ink/10 space-y-1 font-mono text-[11px] text-stone">
-                <div><strong class="text-ink">Systems:</strong> B2B Client CRM &amp; Internal ERP[cite: 12]</div>
-                <div><strong class="text-ink">Stack:</strong> MySQL · PHP (Laravel) · Reporting[cite: 12]</div>
-                <div><strong class="text-ink">Teams:</strong> BA · Sales · Customer Support · Dev[cite: 12, 18]</div>
+              <div class="bento-card p-5 sm:p-6 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-highlight" data-i18n="experience.label_solution">
+                    VÀ XỬ LÝ
+                  </span>
+                  <span class="text-xs font-mono font-bold text-sub">01.B</span>
+                </div>
+                <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="experience.bepro_solution"></p>
               </div>
             </div>
 
-            <div class="lg:col-span-8 space-y-3">
-              <p class="font-sans text-sm text-charcoal leading-relaxed"
-                 data-i18n="experience.dotb_desc"></p>
-              <ul class="list-disc ml-5 space-y-2 font-sans text-xs sm:text-sm text-charcoal leading-relaxed">
-                <li data-i18n="experience.dotb_bullet1"></li>
-                <li data-i18n="experience.dotb_bullet2"></li>
-                <li data-i18n="experience.dotb_bullet3"></li>
-              </ul>
+            <div onclick="openExpVault('bepro', 0)" class="artifact-vault-bar group">
+              <div class="space-y-2">
+                <div class="flex items-center space-x-2">
+                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-main" data-i18n="experience.vault_label">
+                    MỘT CHÚT ĐÍNH KÈM!
+                  </span>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <button type="button" onclick="event.stopPropagation(); openExpVault('bepro', 0)" class="artifact-chip" data-i18n="experience.bepro_chip1">
+                    01. Báo cáo Hậu trận đấu (PDF)
+                  </button>
+                  <button type="button" onclick="event.stopPropagation(); openExpVault('bepro', 1)" class="artifact-chip" data-i18n="experience.bepro_chip2">
+                    02. Bảng dữ liệu mẫu
+                  </button>
+                  <a href="https://www.bepro.ai/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="artifact-chip" data-i18n="experience.bepro_chip3">
+                    Trang chủ bepro.ai
+                  </a>
+                </div>
+              </div>
+
+              <span class="btn-pill btn-pill-solid shrink-0 self-start sm:self-center text-xs" data-i18n="experience.open_vault_btn">
+                Xem Đầy Đủ
+              </span>
             </div>
           </div>
-        </article>
+        </div>
 
-        <!-- Role 03: Goal-Line Studio & VGF -->
-        <article class="bg-alabaster border border-ink/15 p-6 sm:p-8">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <div class="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-ink/10 pb-4 lg:pb-0 lg:pr-6 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between gap-2">
-                  <span class="px-2 py-0.5 bg-ink text-alabaster font-mono text-[10px] font-semibold uppercase tracking-wider">
-                    06/2023 – PRESENT[cite: 12]
-                  </span>
-                  <span class="font-mono text-[11px] text-stone" data-i18n="experience.gl_loc">TP.HCM[cite: 12]</span>
-                </div>
-                <h3 class="font-serif text-xl sm:text-2xl text-ink font-medium mt-2.5"
-                    data-i18n="experience.gl_role">Founder, Lead Data Analyst &amp; Platform Architect[cite: 12]</h3>
-                <div class="font-mono text-xs text-bordeaux font-semibold mt-0.5"
-                     data-i18n="experience.gl_company">Goal-Line Studio × Vietnam Grassroots Football (VGF)[cite: 12]</div>
+        <!-- CHAPTER 02: DOTB -->
+        <div class="exp-ledger-group relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start pt-10 border-t border-neutral-200/60 dark:border-neutral-800/60">
+          <span class="timeline-node absolute -left-[23px] sm:-left-[39px] top-12"></span>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="flex items-center space-x-3">
+              <span class="text-4xl font-black tracking-tighter opacity-25 text-main">02</span>
+              <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bento-card-subtle text-main">
+                07/2023 - 05/2024
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-extrabold text-main" data-i18n="experience.dotb_role">
+                CRM Data Operations &amp; Backend Developer
+              </h3>
+              <div class="text-xs sm:text-sm font-bold mt-0.5 text-highlight" data-i18n="experience.dotb_company">
+                DOTB - B2B Education ERP &amp; CRM Solutions
               </div>
-
-              <div class="mt-4 pt-3 border-t border-ink/10 space-y-1 font-mono text-[11px] text-stone">
-                <div><strong class="text-ink">Team &amp; Output:</strong> 30 Members · 4,600+ Posts[cite: 13]</div>
-                <div><strong class="text-ink">Platform:</strong> PostgreSQL / Supabase Web App[cite: 13]</div>
-                <div><strong class="text-ink">VGF System:</strong> Federation Elo Ranking CRM[cite: 13, 19]</div>
+              <div class="text-xs text-sub mt-0.5" data-i18n="experience.dotb_loc">
+                TP. Hồ Chí Minh
               </div>
             </div>
 
-            <div class="lg:col-span-8 space-y-3">
-              <p class="font-sans text-sm text-charcoal leading-relaxed"
-                 data-i18n="experience.gl_desc"></p>
-              <ul class="list-disc ml-5 space-y-2 font-sans text-xs sm:text-sm text-charcoal leading-relaxed">
-                <li data-i18n="experience.gl_bullet1"></li>
-                <li data-i18n="experience.gl_bullet2"></li>
-                <li data-i18n="experience.gl_bullet3"></li>
-              </ul>
+            <!-- Tech Stack Chips cho DOTB -->
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip">MySQL</span>
+              <span class="skill-chip">PHP (Laravel)</span>
+              <span class="skill-chip">CRM / ERP Database</span>
             </div>
           </div>
-        </article>
+
+          <div class="lg:col-span-8 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bento-card p-5 sm:p-6 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-sub" data-i18n="experience.label_challenge">
+                    VẤN ĐỀ
+                  </span>
+                  <span class="text-xs font-mono font-bold text-sub">02.A</span>
+                </div>
+                <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="experience.dotb_challenge"></p>
+              </div>
+
+              <div class="bento-card p-5 sm:p-6 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-highlight" data-i18n="experience.label_solution">
+                    VÀ XỬ LÝ
+                  </span>
+                  <span class="text-xs font-mono font-bold text-sub">02.B</span>
+                </div>
+                <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="experience.dotb_solution"></p>
+              </div>
+            </div>
+
+            <div onclick="openExpVault('dotb', 0)" class="artifact-vault-bar group">
+              <div class="space-y-2">
+                <div class="flex items-center space-x-2">
+                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-main" data-i18n="experience.vault_label">
+                    MỘT CHÚT ĐÍNH KÈM!
+                  </span>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <button type="button" onclick="event.stopPropagation(); openExpVault('dotb', 0)" class="artifact-chip" data-i18n="experience.dotb_chip1">
+                    01. Quy trình Đối soát Lệch số liệu
+                  </button>
+                  <button type="button" onclick="event.stopPropagation(); openExpVault('dotb', 1)" class="artifact-chip" data-i18n="experience.dotb_chip2">
+                    02. Liên kết &amp; Dự án Liên quan
+                  </button>
+                  <a href="https://dotb.vn/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="artifact-chip" data-i18n="experience.dotb_chip3">
+                    Trang chủ dotb.vn
+                  </a>
+                </div>
+              </div>
+
+              <span class="btn-pill btn-pill-solid shrink-0 self-start sm:self-center text-xs" data-i18n="experience.open_vault_btn">
+                Xem Đầy Đủ
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CHAPTER 03: GOAL-LINE STUDIO × VGF -->
+        <div class="exp-ledger-group relative grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-start pt-10 border-t border-neutral-200/60 dark:border-neutral-800/60">
+          <span class="timeline-node absolute -left-[23px] sm:-left-[39px] top-12"></span>
+
+          <div class="lg:col-span-4 space-y-4">
+            <div class="flex items-center space-x-3">
+              <span class="text-4xl font-black tracking-tighter opacity-25 text-main">03</span>
+              <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bento-card-dark">
+                06/2023 - PRESENT
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-2xl font-extrabold text-main" data-i18n="experience.gl_role">
+                Founder, Internal Platform Architect &amp; Match Analyst
+              </h3>
+              <div class="text-xs sm:text-sm font-bold mt-0.5 text-highlight" data-i18n="experience.gl_company">
+                Goal-Line x Vietnam Grassroots Football (VGF)
+              </div>
+              <div class="text-xs text-sub mt-0.5" data-i18n="experience.gl_loc">
+                TP. Hồ Chí Minh
+              </div>
+            </div>
+
+            <!-- Tech Stack Chips cho Goal-Line x VGF -->
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-chip">PostgreSQL (Supabase)</span>
+              <span class="skill-chip">Full-Stack Web</span>
+              <span class="skill-chip">Writing</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-8 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bento-card p-5 sm:p-6 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-sub" data-i18n="experience.label_challenge">
+                    VẤN ĐỀ
+                  </span>
+                  <span class="text-xs font-mono font-bold text-sub">03.A</span>
+                </div>
+                <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="experience.gl_challenge"></p>
+              </div>
+
+              <div class="bento-card p-5 sm:p-6 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-highlight" data-i18n="experience.label_solution">
+                    VÀ XỬ LÝ
+                  </span>
+                  <span class="text-xs font-mono font-bold text-sub">03.B</span>
+                </div>
+                <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="experience.gl_solution"></p>
+              </div>
+            </div>
+
+            <div onclick="openExpVault('goalline', 0)" class="artifact-vault-bar group">
+              <div class="space-y-2">
+                <div class="flex items-center space-x-2">
+                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-main" data-i18n="experience.vault_label">
+                    MỘT CHÚT ĐÍNH KÈM!
+                  </span>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                  <button type="button" onclick="event.stopPropagation(); openExpVault('goalline', 0)" class="artifact-chip" data-i18n="experience.gl_chip1">
+                    Giao diện Goal-Line Studio
+                  </button>
+                  <a href="https://www.facebook.com/official.goalline" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="artifact-chip" data-i18n="experience.gl_chip2">
+                    Fanpage Goal-Line (37K+)
+                  </a>
+                  <a href="https://vgf.vn/" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="artifact-chip" data-i18n="experience.gl_chip3">
+                    Trang chủ vgf.vn
+                  </a>
+                </div>
+              </div>
+
+              <span class="btn-pill btn-pill-solid shrink-0 self-start sm:self-center text-xs" data-i18n="experience.open_vault_btn">
+                Xem Đầy Đủ
+              </span>
+            </div>
+          </div>
+        </div>
 
       </div>
     </section>
 
-    <!-- Section 03: Skills & Education -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-      
-      <!-- Skills Table (8 Cols) -->
-      <div class="lg:col-span-8 bg-parchment border border-ink/15 p-6 sm:p-8">
-        <div class="pb-3 mb-5 border-b border-ink/10">
-          <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-bordeaux font-semibold block"
-                data-i18n="experience.sec3_tag">PHẦN 03 · NĂNG LỰC KỸ THUẬT</span>
-          <h2 class="font-serif text-2xl text-ink mt-0.5"
-              data-i18n="experience.sec3_h2">Hệ Thống Công Cụ &amp; Kỹ Năng Phân Tích</h2>
-        </div>
-
-        <div class="overflow-x-auto bg-alabaster border border-ink/12">
-          <table class="monograph-table">
-            <thead>
-              <tr>
-                <th class="w-48" data-i18n="experience.skill_col_category">Nhóm Kỹ Năng</th>
-                <th data-i18n="experience.skill_col_tools">Công cụ &amp; Phương pháp Thực hành</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="font-mono text-xs font-semibold text-ink">Analytical &amp; BI[cite: 12]</td>
-                <td class="text-xs sm:text-sm" data-i18n="experience.skill_bi_desc"></td>
-              </tr>
-              <tr>
-                <td class="font-mono text-xs font-semibold text-ink">Databases &amp; SQL[cite: 12]</td>
-                <td class="text-xs sm:text-sm" data-i18n="experience.skill_sql_desc"></td>
-              </tr>
-              <tr>
-                <td class="font-mono text-xs font-semibold text-ink">Programming &amp; ETL[cite: 12]</td>
-                <td class="text-xs sm:text-sm" data-i18n="experience.skill_py_desc"></td>
-              </tr>
-              <tr>
-                <td class="font-mono text-xs font-semibold text-ink">Languages[cite: 12]</td>
-                <td class="text-xs sm:text-sm" data-i18n="experience.skill_lang_desc"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Education (4 Cols) -->
-      <div class="lg:col-span-4 bg-parchment border border-ink/15 p-6 sm:p-8 flex flex-col justify-between">
+    <!-- SECTION 03: TECH STACK & EDUCATION -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 reveal-up delay-3">
+      <div class="lg:col-span-8 space-y-4">
         <div>
-          <div class="pb-3 mb-5 border-b border-ink/10">
-            <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-bordeaux font-semibold block"
-                  data-i18n="experience.sec4_tag">PHẦN 04 · HỌC VẤN</span>
-            <h2 class="font-serif text-2xl text-ink mt-0.5"
-                data-i18n="experience.sec4_h2">Bằng Cấp Chuyên Môn</h2>
-          </div>
-
-          <div class="space-y-4">
-            <div class="p-4 bg-alabaster border border-ink/12">
-              <div class="font-mono text-[10px] uppercase tracking-wider text-bordeaux font-semibold"
-                   data-i18n="experience.edu_timeline">TỐT NGHIỆP: THÁNG 03/2026 · GPA: 3.10 / 4.0[cite: 12]</div>
-              <h3 class="font-serif text-lg text-ink font-medium mt-1"
-                  data-i18n="experience.edu_degree">Kỹ sư Kỹ thuật Phần mềm (Bachelor of Software Engineering)[cite: 12]</h3>
-              <div class="font-mono text-xs text-stone mt-1"
-                   data-i18n="experience.edu_school">Trường Đại học Sài Gòn (Saigon University) · TP.HCM[cite: 12]</div>
-              <p class="font-sans text-xs text-charcoal mt-3 pt-2.5 border-t border-ink/10 leading-relaxed"
-                 data-i18n="experience.edu_courses"></p>
-            </div>
-          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-sub block" data-i18n="experience.sec3_tag">
+            HỆ THỐNG CÔNG CỤ
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-main mt-0.5" data-i18n="experience.sec3_h2">
+            Tech Stack.
+          </h2>
         </div>
 
-        <div class="mt-6 pt-4 border-t border-ink/12 flex items-center justify-between">
-          <a href="test001.pdf" target="_blank" class="font-mono text-xs text-bordeaux hover:underline"
-             data-i18n="common.open_pdf">Mở file PDF CV ↗</a>
-          <a href="projects.html" class="px-4 py-2 bg-ink hover:bg-bordeaux text-alabaster font-mono text-xs transition-colors"
-             data-i18n="common.explore_projects">Khám phá Dự án →</a>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bento-card bento-lift p-6 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-extrabold text-main">Analytical &amp; BI</span>
+              <span class="text-xs font-bold text-highlight">01</span>
+            </div>
+            <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="experience.skill_bi_desc"></p>
+          </div>
+
+          <div class="bento-card bento-lift p-6 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-extrabold text-main">Databases &amp; SQL</span>
+              <span class="text-xs font-bold text-highlight">02</span>
+            </div>
+            <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="experience.skill_sql_desc"></p>
+          </div>
+
+          <div class="bento-card bento-lift p-6 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-extrabold text-main">Programming &amp; ETL</span>
+              <span class="text-xs font-bold text-highlight">03</span>
+            </div>
+            <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="experience.skill_py_desc"></p>
+          </div>
+
+          <div class="bento-card bento-lift p-6 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-extrabold text-main">Languages</span>
+              <span class="text-xs font-bold text-highlight">04</span>
+            </div>
+            <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="experience.skill_lang_desc"></p>
+          </div>
         </div>
       </div>
 
+      <div class="lg:col-span-4 flex flex-col justify-between space-y-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-sub block" data-i18n="experience.sec4_tag">
+            HỌC VẤN
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-main mt-0.5" data-i18n="experience.sec4_h2">
+            Education.
+          </h2>
+        </div>
+
+        <div class="bento-card bento-lift p-7 flex-1 flex flex-col justify-between">
+          <div class="space-y-3">
+            <span class="inline-block px-3 py-1 rounded-full bento-card-subtle text-[11px] font-bold uppercase tracking-wider text-main" data-i18n="experience.edu_timeline">
+              TỐT NGHIỆP: 03/2026 - GPA: 3.10 / 4.0
+            </span>
+            <h3 class="text-xl font-extrabold text-main" data-i18n="experience.edu_degree">
+              Kỹ sư Kỹ thuật Phần mềm
+            </h3>
+            <div class="text-xs font-bold text-highlight" data-i18n="experience.edu_school">
+              Trường Đại học Sài Gòn (Saigon University)
+            </div>
+            <p class="text-xs text-muted pt-3 border-t border-neutral-200 dark:border-neutral-800 leading-relaxed" data-i18n="experience.edu_courses"></p>
+          </div>
+
+          <div class="pt-5 mt-4 border-t border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
+            <a href="assets/CV.pdf" target="_blank" class="text-xs font-bold text-main hover:underline" data-i18n="common.open_pdf">
+              Mở file PDF CV
+            </a>
+            <a href="projects.html" class="btn-pill" data-i18n="common.explore_projects">
+              Khám phá Dự án
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
 
   </main>
 
-  <!-- =====================================================================
-       3. COLOPHON FOOTER
-       ===================================================================== -->
-  <footer class="border-t border-ink/10 bg-parchment/50 px-4 lg:px-10 py-5">
-    <div class="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[11px] text-stone">
-      <div>
-        <span class="text-ink font-semibold">VÕ KHƯƠNG DUY</span>
-        <span class="mx-2">·</span>
-        <span>vokhuongduy912@gmail.com</span>
-        <span class="mx-2">·</span>
-        <span>(+84) 933 012 395</span>
+  <!-- 3. MULTI-TAB ARTIFACT VAULT MODAL -->
+  <div id="exp-vault-modal" onclick="if(event.target === this) closeExpVault()"
+       class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6">
+    <div class="bento-card max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden">
+      
+      <div class="px-5 py-4 border-b border-neutral-200 dark:border-neutral-800 flex items-center justify-between gap-3">
+        <div class="min-w-0">
+          <span id="exp-vault-tag" class="text-[10px] font-bold uppercase tracking-wider block text-highlight">
+            ARTIFACT VAULT
+          </span>
+          <h3 id="exp-vault-title" class="text-base sm:text-lg font-extrabold text-main truncate mt-0.5">
+            Deliverables &amp; Links
+          </h3>
+        </div>
+        <button onclick="closeExpVault()" class="btn-pill shrink-0" data-i18n="common.close">
+          Đóng
+        </button>
       </div>
-      <div class="flex items-center space-x-5">
-        <a href="index.html" class="hover:text-ink transition-colors" data-i18n="nav.portal">00. Mở Đầu</a>
-        <span>·</span>
-        <a href="projects.html" class="hover:text-ink transition-colors" data-i18n="nav.projects">01. Dự Án</a>
+
+      <div id="exp-vault-tabs" class="px-5 py-3 bento-card-subtle border-b border-neutral-200 dark:border-neutral-800 flex items-center gap-2 overflow-x-auto no-scrollbar">
       </div>
+
+      <div id="exp-vault-stage" class="p-5 sm:p-7 overflow-y-auto space-y-5 flex-1">
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4. FOOTER -->
+  <footer class="w-full pt-8 pb-6 border-t border-neutral-300 dark:border-neutral-800 mt-16 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-sub relative z-10">
+    <div>
+      <span class="font-bold text-main">VÕ KHƯƠNG DUY</span> - Ho Chi Minh City, Vietnam
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+      <a href="mailto:vokhuongduy912@gmail.com" class="hover:text-main transition-colors">vokhuongduy912@gmail.com</a>
+      <span>-</span>
+      <a href="index.html" class="hover:text-main transition-colors" data-i18n="nav.portal">00. Mở Đầu</a>
+      <span>-</span>
+      <a href="projects.html" class="hover:text-main transition-colors" data-i18n="nav.projects">01. Dự Án</a>
+      <span>-</span>
+      <a href="experience.html" class="hover:text-main transition-colors" data-i18n="nav.experience">02. Kinh Nghiệm</a>
+      <span>-</span>
+      <a href="assets/CV.pdf" target="_blank" class="hover:text-main transition-colors">CV (PDF)</a>
     </div>
   </footer>
 
+  <script src="js/experience.js"></script>
 </body>
 </html>

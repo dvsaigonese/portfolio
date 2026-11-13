@@ -1,299 +1,302 @@
 <!DOCTYPE html>
-<html lang="vi" data-theme="light" data-lang="vi">
+<html lang="en" data-theme="light" data-lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Võ Khương Duy — Data Analyst &amp; Analytics Engineering Portfolio</title>
+  <title>Võ Khương Duy — Data Analyst &amp; Analytics Engineer</title>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['Newsreader', 'Georgia', 'serif'],
-            sans: ['Plus Jakarta Sans', '-apple-system', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace']
-          }
-        }
-      }
+      darkMode: ['selector', '[data-theme="dark"]']
     };
   </script>
 
   <link rel="stylesheet" href="css/monograph.css" />
-  <!-- Nạp Từ điển và Engine i18n -->
   <script src="js/i18n.js"></script>
   <script src="js/theme-lang.js"></script>
 </head>
 
-<body class="bg-alabaster text-ink font-sans antialiased selection:bg-bordeaux selection:text-white min-h-screen flex flex-col justify-between">
+<body class="min-h-screen flex flex-col justify-between p-4 sm:p-6 lg:p-10 max-w-[1420px] mx-auto">
+
+  <!-- Hệ thống Mặt trăng bán nguyệt kép cố định, chảy dọc theo toàn bộ giao diện -->
+  <div class="celestial-backdrop">
+    <div class="lunar-orb-primary"></div>
+    <div class="lunar-orb-secondary"></div>
+  </div>
 
   <!-- =====================================================================
-       1. EDITORIAL MASTHEAD
+       1. FLOATING NAVIGATION BAR (Thứ tự chuẩn: 00 -> 01 -> 02 + Gạch dưới 00)
        ===================================================================== -->
-  <header class="sticky top-0 z-40 h-16 bg-alabaster/95 backdrop-blur-md border-b border-ink/10 px-4 lg:px-10">
-    <div class="max-w-[1440px] mx-auto h-full flex items-center justify-between gap-3">
-      
-      <!-- Monogram & Name -->
-      <a href="index.html" class="flex items-center space-x-3 group">
-        <span class="w-2.5 h-2.5 rounded-full bg-bordeaux group-hover:scale-125 transition-transform"></span>
-        <span class="font-mono text-xs font-semibold tracking-[0.18em] uppercase text-ink">VÕ KHƯƠNG DUY</span>
-        <span class="hidden md:inline-block text-stone">•</span>
-        <span class="hidden md:inline-block font-mono text-[11px] text-stone uppercase tracking-wider"
-              data-i18n="nav.brand_sub">HỒ SƠ DỮ LIỆU &amp; PHÂN TÍCH</span>
+  <header class="floating-nav w-full py-3.5 px-4 sm:px-7 mb-10 sm:mb-14 z-30 relative reveal-up">
+    <div class="flex items-center justify-between gap-2">
+      <a href="index.html" class="flex items-center space-x-2.5">
+        <span class="w-3.5 h-3.5 rounded-[4px] inline-block" style="background-color: var(--text-main);"></span>
+        <span class="font-extrabold text-base sm:text-lg tracking-tight text-main">VKDuy.</span>
       </a>
 
-      <!-- Nav & Toggles -->
-      <div class="flex items-center space-x-4 sm:space-x-6">
-        <nav class="flex items-center space-x-4 sm:space-x-6">
-          <a href="index.html" class="font-mono text-xs uppercase tracking-widest text-ink font-semibold border-b-2 border-bordeaux py-1"
-             data-i18n="nav.portal">00. Mở Đầu</a>
-          <a href="projects.html" class="font-mono text-xs uppercase tracking-widest text-stone hover:text-ink transition-colors py-1"
-             data-i18n="nav.projects">01. Dự Án</a>
-          <a href="experience.html" class="font-mono text-xs uppercase tracking-widest text-stone hover:text-ink transition-colors py-1"
-             data-i18n="nav.experience">02. Kinh Nghiệm</a>
-        </nav>
+      <!-- Desktop Nav (00 -> 01 -> 02) -->
+      <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold">
+        <a href="index.html" class="text-main font-extrabold underline underline-offset-8 decoration-2" data-i18n="nav.portal">00. Mở Đầu</a>
+        <a href="projects.html" class="text-muted hover:text-main transition-colors" data-i18n="nav.projects">01. Dự Án</a>
+        <a href="experience.html" class="text-muted hover:text-main transition-colors" data-i18n="nav.experience">02. Kinh Nghiệm</a>
+      </nav>
 
-        <div class="flex items-center space-x-2 pl-2 border-l border-ink/15">
-          <button id="lang-toggle-btn" onclick="window.DAPORT_PREFS.toggleLang()"
-                  title="Switch Language (VI / EN)"
-                  class="px-2.5 py-1 bg-parchment hover:bg-parchmentDark border border-ink/15 font-mono text-[11px] cursor-pointer transition-colors">
-            VI / EN
-          </button>
-          <button id="theme-toggle-btn" onclick="window.DAPORT_PREFS.toggleTheme()"
-                  title="Toggle Light / Dark Mode"
-                  class="px-2.5 py-1 bg-parchment hover:bg-parchmentDark border border-ink/15 font-mono text-[11px] text-ink cursor-pointer transition-colors">
-            ☾ Tối
-          </button>
-          <a href="test001.pdf" target="_blank"
-             class="hidden lg:inline-block px-3 py-1 bg-ink text-alabaster hover:bg-bordeaux font-mono text-[11px] transition-colors"
-             data-i18n="nav.download_cv">Tải CV (PDF) ↗</a>
-        </div>
+      <!-- Controls -->
+      <div class="flex items-center space-x-2">
+        <button onclick="window.DAPORT_PREFS.toggleLang()" id="lang-toggle-btn" class="btn-pill">
+          VI / EN
+        </button>
+        <button onclick="window.DAPORT_PREFS.toggleTheme()" id="theme-toggle-btn" class="btn-pill">
+          Sáng
+        </button>
       </div>
-
     </div>
+
+    <!-- Mobile Navigation Bar (00 -> 01 -> 02) -->
+    <nav class="flex md:hidden items-center justify-around pt-2.5 mt-2.5 border-t border-neutral-200 dark:border-neutral-800 text-xs font-semibold">
+      <a href="index.html" class="text-main font-extrabold underline underline-offset-4 decoration-2 py-1" data-i18n="nav.portal">00. Mở Đầu</a>
+      <a href="projects.html" class="text-muted py-1" data-i18n="nav.projects">01. Dự Án</a>
+      <a href="experience.html" class="text-muted py-1" data-i18n="nav.experience">02. Kinh Nghiệm</a>
+    </nav>
   </header>
 
   <!-- =====================================================================
-       2. GREETING & LOOKBOOK PANELS
+       2. HERO SECTION
        ===================================================================== -->
-  <main class="flex-1 max-w-[1440px] w-full mx-auto px-4 lg:px-10 py-8 lg:py-12 flex flex-col justify-center">
-
-    <!-- Greeting Hero Block -->
-    <section class="mb-9 pb-8 border-b border-ink/12">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-        
-        <div class="lg:col-span-8">
-          <div class="inline-flex items-center space-x-2 px-2.5 py-1 bg-parchment border border-ink/12 font-mono text-[11px] text-bordeaux uppercase tracking-widest mb-4">
-            <span>●</span>
-            <span data-i18n="home.greeting_tag">XIN CHÀO, TÔI LÀ VÕ KHƯƠNG DUY</span>
-          </div>
-
-          <h1 class="font-serif text-3xl sm:text-5xl lg:text-[3.25rem] leading-[1.15] text-ink font-normal tracking-tight"
-              data-i18n="home.hero_title">
-            Chuyên viên Phân tích Dữ liệu có nền tảng <span class="italic text-bordeaux">Kỹ thuật Phần mềm.</span>
+  <main class="flex-1 w-full space-y-12 sm:space-y-16 relative z-10">
+    
+    <section class="pt-2 pb-4 reveal-up delay-1">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <h1 class="text-6xl sm:text-7xl lg:text-[6.6rem] font-extrabold tracking-[-0.04em] leading-[0.92] text-main">
+            Hello, I'm a <br>
+            Data Analyst.
           </h1>
-
-          <p class="font-sans text-sm sm:text-base text-charcoal leading-relaxed mt-4 max-w-2xl"
-             data-i18n="home.hero_desc"></p>
+          <p class="text-xs sm:text-sm font-bold text-sub tracking-wider pt-2 uppercase">
+            SIMPLY LOVE TELLING STORY THROUGH DATA
+          </p>
         </div>
 
-        <div class="lg:col-span-4 bg-parchment border border-ink/15 p-5 flex flex-col justify-between space-y-3">
-          <div class="flex items-center justify-between border-b border-ink/10 pb-2.5">
-            <span class="font-mono text-[10px] uppercase tracking-widest text-stone"
-                  data-i18n="home.dossier_title">THÔNG TIN LIÊN HỆ</span>
-            <span class="font-mono text-[10px] text-forest font-semibold"
-                  data-i18n="common.open_to_work">● Sẵn sàng nhận việc</span>
+        <div class="lg:col-span-4 flex flex-col items-start lg:items-end space-y-4">
+          <div class="relative w-full max-w-[290px] aspect-[4/5] rounded-[2rem] overflow-hidden bento-card bento-lift p-2" style="background-color: var(--bg-card-subtle);">
+            <img src="assets/ava.jpg" alt="Võ Khương Duy"
+                 class="w-full h-full object-cover rounded-[1.6rem] bw-portrait" />
           </div>
-
-          <div class="space-y-1.5 font-mono text-xs">
-            <div class="flex justify-between">
-              <span class="text-stone" data-i18n="home.degree_label">Học vấn:</span>
-              <span class="text-ink font-medium" data-i18n="home.degree_val">Kỹ sư Phần mềm (SGU)</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-stone" data-i18n="home.english_label">Ngoại ngữ:</span>
-              <span class="text-ink font-medium" data-i18n="home.english_val">TOEIC L&amp;R 735 · S&amp;W 300</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-stone">Email:</span>
-              <a href="mailto:vokhuongduy912@gmail.com" class="text-bordeaux hover:underline">vokhuongduy912@gmail.com</a>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-stone" data-i18n="home.phone_label">Điện thoại:</span>
-              <span class="text-ink tabular-nums">(+84) 933 012 395</span>
-            </div>
-          </div>
-
-          <div class="pt-2 border-t border-ink/10 flex items-center justify-between text-xs font-mono">
-            <span class="text-stone" data-i18n="common.hcmc">TP. Hồ Chí Minh</span>
-            <a href="test001.pdf" target="_blank" class="text-ink hover:text-bordeaux font-semibold underline underline-offset-4"
-               data-i18n="common.inspect_pdf">Xem bản PDF CV ↗</a>
+          <div class="max-w-[290px] text-xs sm:text-sm font-medium text-muted text-left lg:text-right leading-relaxed">
+            <p data-i18n="home.hero_subtext">
+            </p>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- Two Lookbook Storefront Panels -->
-    <section aria-label="Portfolio Navigation Panels">
-      <div class="flex items-center justify-between mb-4">
-        <span class="font-mono text-[11px] uppercase tracking-[0.16em] text-stone"
-              data-i18n="home.portal_select_hint">
-          CHỌN MỘT CHUYÊN MỤC BÊN DƯỚI ĐỂ KHÁM PHÁ CHI TIẾT
-        </span>
-        <span class="font-mono text-[11px] text-stone hidden sm:inline"
-              data-i18n="home.portal_volumes_hint">
-          02 CHUYÊN MỤC CHÍNH · TƯƠNG TÁC TRỰC TIẾP
-        </span>
+    <!-- =====================================================================
+       3. TECH TICKER STRIP
+       ===================================================================== -->
+    <section class="py-3.5 px-6 bento-card flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm font-semibold text-sub reveal-up delay-2">
+      <span class="hover:text-main transition-colors">SQL (MySQL/PostgreSQL)</span>
+      <span class="opacity-40">•</span>
+      <span class="hover:text-main transition-colors">Python (Pandas/Seaborn)</span>
+      <span class="opacity-40">•</span>
+      <span class="hover:text-main transition-colors">Power BI (DAX)</span>
+    </section>
+
+    <!-- =====================================================================
+       4. THE BENTO GRID (TÍCH HỢP DATA-I18N SONG NGỮ 100%)
+       ===================================================================== -->
+    <section class="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 reveal-up delay-3">
+      
+      <!-- HÀNG 1 - BOX 1: About me (5 Cols) -->
+      <a href="experience.html" class="md:col-span-5 bento-card bento-lift relative overflow-hidden p-8 flex flex-col justify-between min-h-[380px] group cursor-pointer" style="background-color: #141312; color: #FFFFFF;">
+        <div class="relative z-10">
+          <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-2">About me.</h2>
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wider" data-i18n="experience.sec1_tag">
+            VOLUME 02 - CÂU CHUYỆN CỦA TÔI
+          </span>
+        </div>
+
+        <img src="assets/ava.jpg" 
+             alt="Võ Khương Duy" 
+             class="absolute right-0 bottom-0 w-3/5 h-4/5 object-cover object-top opacity-50 bw-portrait pointer-events-none group-hover:scale-105 transition-transform duration-300" />
+
+        <div class="relative z-10 pt-16 flex items-center space-x-2 text-sm font-semibold text-neutral-300 group-hover:text-white">
+          <span data-i18n="common.read_dossier">Xem Câu chuyện của tôi</span>
+        </div>
+      </a>
+
+      <!-- HÀNG 1 - BOX 2: Duy. (4 Cols) -->
+      <div class="md:col-span-4 bento-card bento-lift p-8 flex flex-col justify-between">
+        <div class="space-y-3">
+          <h3 class="text-3xl font-extrabold tracking-tight text-main">Duy.</h3>
+          <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="home.hero_desc">
+            Tốt nghiệp Kỹ sư Kỹ thuật Phần mềm (ĐH Sài Gòn), tôi kết hợp những hiểu biết về cơ sở dữ liệu với khả năng phân tích nghiệp vụ và trực quan hóa dữ liệu, nhằm giải quyết các bài toán thực tế. <br><br> Hoặc đôi khi, đơn giản là tôi kể một câu chuyện, qua những gì tôi nhìn thấy trong dữ liệu mà thôi!
+          </p>
+        </div>
+        <div class="pt-4 border-t border-neutral-200 dark:border-neutral-800 flex justify-between items-center text-xs font-semibold text-sub">
+          <span data-i18n="home.school_stat">ĐH Sài Gòn (GPA: 3.1/4.0)</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+      <!-- HÀNG 1 - BOX 3: Thẻ TOEIC & Ngoại ngữ (3 Cols) -->
+      <div class="md:col-span-3 bento-card bento-lift p-6 sm:p-7 flex flex-col justify-between">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-sub block" data-i18n="home.cert_tag">
+            ENGLISH
+          </span>
+          <div class="text-4xl sm:text-5xl font-extrabold tracking-tight text-main tabular-nums mt-3">
+            735
+          </div>
+          <div class="text-xs font-bold text-sub mt-1" data-i18n="home.toeic_sub">
+            TOEIC Listening &amp; Reading
+          </div>
+        </div>
 
-        <!-- Panel 01: Projects Archive -->
-        <a href="projects.html" class="portal-panel group bg-parchment border border-ink/15 p-7 sm:p-9 lg:p-11 flex flex-col justify-between min-h-[400px]">
-          <div>
-            <div class="flex items-center justify-between pb-4 mb-5 border-b border-ink/10">
-              <div class="flex items-center space-x-2.5">
-                <span class="px-2.5 py-0.5 bg-bordeaux text-white font-mono text-[10px] font-semibold tracking-widest uppercase">
-                  VOLUME 01
-                </span>
-                <span class="font-mono text-xs uppercase tracking-widest text-stone"
-                      data-i18n="home.vol1_tag">KHO DỰ ÁN &amp; MÃ NGUỒN</span>
-              </div>
-              <span id="portal-folio-count" class="font-mono text-xs text-ink font-semibold tabular-nums">
-                04 Projects · 23 Files
-              </span>
-            </div>
+        <div>
+          <div class="text-4xl sm:text-5xl font-extrabold tracking-tight text-main tabular-nums mt-3">
+            300/400
+          </div>
+          <div class="text-xs font-bold text-sub mt-1">
+            TOEIC Speaking &amp; Writing
+          </div>
+        </div>
 
-            <h2 class="font-serif text-3xl sm:text-4xl text-ink leading-[1.18] mb-3 group-hover:text-bordeaux transition-colors"
-                data-i18n="home.vol1_title"></h2>
+        <div class="pt-4 border-t border-neutral-200 dark:border-neutral-800 text-xs text-sub leading-snug">
+          <span class="block text-main font-bold" data-i18n="home.degree_title">Kỹ sư Kỹ thuật Phần mềm</span>
+          <span data-i18n="home.degree_school">Đại học Sài Gòn - 2026</span>
+        </div>
+      </div>
 
-            <p class="font-sans text-sm text-charcoal leading-relaxed"
-               data-i18n="home.vol1_desc"></p>
+      <!-- HÀNG 2 - BOX 4: Social Icons & Nút mở nhanh CV PDF -->
+      <div class="md:col-span-4 bento-card bento-lift p-7 flex flex-col justify-between">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-xs font-bold text-sub uppercase tracking-wider" data-i18n="home.contact_tag">
+            KẾT NỐI VỚI TÔI
+          </span>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 pt-3">
+          <div class="flex items-center gap-2.5">
+            <!-- GitHub Logo -->
+            <a href="https://github.com/" target="_blank" rel="noopener" title="GitHub"
+               class="w-11 h-11 rounded-2xl bento-card-subtle flex items-center justify-center text-main hover:text-[var(--accent-highlight)] hover:border-[var(--accent-highlight)] hover:bg-[var(--bg-card)] hover:scale-110 transition-all">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+
+            <!-- Facebook Logo -->
+            <a href="https://facebook.com/" target="_blank" rel="noopener" title="Facebook"
+               class="w-11 h-11 rounded-2xl bento-card-subtle flex items-center justify-center text-main hover:text-[var(--accent-highlight)] hover:border-[var(--accent-highlight)] hover:bg-[var(--bg-card)] hover:scale-110 transition-all">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+
+            <!-- Email Icon -->
+            <a href="mailto:vokhuongduy912@gmail.com" title="vokhuongduy912@gmail.com"
+               class="w-11 h-11 rounded-2xl bento-card-subtle flex items-center justify-center text-main hover:text-[var(--accent-highlight)] hover:border-[var(--accent-highlight)] hover:bg-[var(--bg-card)] hover:scale-110 transition-all">
+              <svg class="w-5 h-5 stroke-current" fill="none" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </a>
           </div>
 
-          <!-- 4 Quick Project Tiles -->
-          <div class="my-6 p-4 bg-alabaster border border-ink/12 grid grid-cols-2 sm:grid-cols-4 gap-2.5 font-mono text-xs">
-            <div class="p-2.5 bg-parchment/70 border border-ink/10">
-              <div class="text-[9px] text-stone uppercase">01 · SQL ENGINE</div>
-              <div class="font-serif text-base font-semibold text-ink mt-0.5">24 Queries</div>
-              <div class="text-[10px] text-stone truncate" data-i18n="home.vol1_proj1_sub">Tài chính EPL 92–26</div>
-            </div>
-            <div class="p-2.5 bg-parchment/70 border border-ink/10">
-              <div class="text-[9px] text-stone uppercase">02 · POWER BI</div>
-              <div class="font-serif text-base font-semibold text-ink mt-0.5">32 Seasons</div>
-              <div class="text-[10px] text-stone truncate" data-i18n="home.vol1_proj2_sub">4 Trang Báo cáo DAX</div>
-            </div>
-            <div class="p-2.5 bg-parchment/70 border border-ink/10">
-              <div class="text-[9px] text-stone uppercase">03 · PYTHON EDA</div>
-              <div class="font-serif text-base font-semibold text-bordeaux mt-0.5">$2.69M Loss</div>
-              <div class="text-[10px] text-stone truncate" data-i18n="home.vol1_proj3_sub">Kiểm toán TheLook</div>
-            </div>
-            <div class="p-2.5 bg-parchment/70 border border-ink/10">
-              <div class="text-[9px] text-stone uppercase">04 · E2E SUITE</div>
-              <div class="font-serif text-base font-semibold text-ink mt-0.5">2.4M+ Rows</div>
-              <div class="text-[10px] text-stone truncate" data-i18n="home.vol1_proj4_sub">Star Schema &amp; BI</div>
-            </div>
+          <!-- Nút mở nhanh CV PDF trong thư mục assets/ -->
+          <a href="assets/CV.pdf" target="_blank"
+             class="h-11 px-4 rounded-2xl bento-card-dark flex items-center justify-center text-xs font-extrabold tracking-wide hover:scale-105 transition-all">
+            CV (PDF)
+          </a>
+        </div>
+      </div>
+
+      <!-- HÀNG 2 - BOX 5: Lối vào Dự án cá nhân (8 Cols) -->
+      <a href="projects.html" class="md:col-span-8 bento-card bento-lift p-7 flex items-center justify-between gap-4 group cursor-pointer">
+        <div class="space-y-1.5">
+          <span class="text-xs font-bold text-sub uppercase tracking-wider" data-i18n="home.vol1_tag">
+            VOLUME 01 - DỰ ÁN CÁ NHÂN &amp; MÃ NGUỒN
+          </span>
+          <h3 class="text-xl sm:text-2xl font-extrabold tracking-tight text-main group-hover:underline underline-offset-4" data-i18n="home.vol1_card_title">
+            Từ dữ liệu thô cho đến các câu chuyện của chúng
+          </h3>
+          <p class="text-xs sm:text-sm text-muted" data-i18n="home.vol1_card_desc">
+            Xem Dashboard Power BI, SQL / Python Notebook (.ipynb), DAX và dữ liệu mẫu CSV trực tiếp.
+          </p>
+        </div>
+      </a>
+
+    </section>
+
+    <!-- =====================================================================
+       5. SERVICES / CORE CAPABILITIES
+       ===================================================================== -->
+    <section class="space-y-6 pt-4 reveal-up delay-4">
+      <h2 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-main">
+        Services.
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+        <div class="bento-card bento-lift p-7 space-y-4">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm bento-card-subtle text-main">
+            01
           </div>
+          <h3 class="text-lg font-extrabold text-main">
+            Relational Data Warehousing
+          </h3>
+          <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="home.srv1_desc">
+          </p>
+        </div>
 
-          <div class="pt-4 border-t border-ink/12 flex items-center justify-between">
-            <span class="font-mono text-[11px] text-stone">SQL · Python (.ipynb) · Power BI (.dax) · CSV</span>
-            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-ink group-hover:text-bordeaux transition-colors"
-                  data-i18n="common.enter_archive">Mở Kho Dự Án →</span>
+        <div class="bento-card-dark bento-lift p-7 space-y-4">
+          <div class="card-badge w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm">
+            02
           </div>
-        </a>
+          <h3 class="card-title text-lg font-extrabold">
+            Python ETL &amp; Diagnostic Audits
+          </h3>
+          <p class="card-desc text-xs sm:text-sm leading-relaxed" data-i18n="home.srv2_desc">
+          </p>
+        </div>
 
-        <!-- Panel 02: Experience & Dossier -->
-        <a href="experience.html" class="portal-panel group bg-parchment border border-ink/15 p-7 sm:p-9 lg:p-11 flex flex-col justify-between min-h-[400px]">
-          <div>
-            <div class="flex items-center justify-between pb-4 mb-5 border-b border-ink/10">
-              <div class="flex items-center space-x-2.5">
-                <span class="px-2.5 py-0.5 bg-ink text-alabaster font-mono text-[10px] font-semibold tracking-widest uppercase">
-                  VOLUME 02
-                </span>
-                <span class="font-mono text-xs uppercase tracking-widest text-stone"
-                      data-i18n="home.vol2_tag">KINH NGHIỆM &amp; KỸ NĂNG</span>
-              </div>
-              <span class="font-mono text-xs text-ink font-semibold">
-                BEPRO11 · DOTB · Goal-Line · VGF
-              </span>
-            </div>
-
-            <h2 class="font-serif text-3xl sm:text-4xl text-ink leading-[1.18] mb-3 group-hover:text-bordeaux transition-colors"
-                data-i18n="home.vol2_title"></h2>
-
-            <p class="font-sans text-sm text-charcoal leading-relaxed"
-               data-i18n="home.vol2_desc"></p>
+        <div class="bento-card p-7 bento-lift space-y-4">
+          <div class="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-sm bento-card-subtle text-main">
+            03
           </div>
-
-          <div class="my-6 p-4 bg-alabaster border border-ink/12 space-y-2 font-mono text-xs">
-            <div class="flex items-center justify-between py-1 border-b border-ink/10">
-              <span class="text-ink font-medium" data-i18n="home.vol2_role1">1. BEPRO11 — Sports Data Analyst (800+ trận)</span>
-              <span class="text-bordeaux text-[11px] font-semibold">06/2024 – Nay</span>
-            </div>
-            <div class="flex items-center justify-between py-1 border-b border-ink/10">
-              <span class="text-ink font-medium" data-i18n="home.vol2_role2">2. DOTB — CRM Data &amp; Backend Developer (ERP)</span>
-              <span class="text-stone text-[11px]">07/2023 – 05/2024</span>
-            </div>
-            <div class="flex items-center justify-between py-1">
-              <span class="text-ink font-medium" data-i18n="home.vol2_role3">3. Goal-Line Studio &amp; VGF — Founder / Data Lead</span>
-              <span class="text-forest text-[11px] font-semibold">06/2023 – Nay</span>
-            </div>
-          </div>
-
-          <div class="pt-4 border-t border-ink/12 flex items-center justify-between">
-            <span class="font-mono text-[11px] text-stone" data-i18n="home.vol2_footer_hint">Kinh nghiệm thực tế · Kỹ năng · Học vấn</span>
-            <span class="font-mono text-xs font-semibold uppercase tracking-wider text-ink group-hover:text-bordeaux transition-colors"
-                  data-i18n="common.read_dossier">Xem Hồ Sơ Kinh Nghiệm →</span>
-          </div>
-        </a>
-
+          <h3 class="text-lg font-extrabold text-main">
+            Executive Power BI Decision Suites
+          </h3>
+          <p class="text-xs sm:text-sm text-muted leading-relaxed" data-i18n="home.srv3_desc">
+          </p>
+        </div>
       </div>
     </section>
 
   </main>
 
   <!-- =====================================================================
-       3. COLOPHON FOOTER
+       6. MINIMAL FOOTER
        ===================================================================== -->
-  <footer class="border-t border-ink/10 bg-parchment/50 px-4 lg:px-10 py-5">
-    <div class="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[11px] text-stone">
-      <div>
-        <span class="text-ink font-semibold">VÕ KHƯƠNG DUY</span>
-        <span class="mx-2">·</span>
-        <span>vokhuongduy912@gmail.com</span>
-        <span class="mx-2">·</span>
-        <span>(+84) 933 012 395</span>
-      </div>
-      <div class="flex items-center space-x-5">
-        <a href="projects.html" class="hover:text-ink transition-colors" data-i18n="nav.projects">01. Dự Án</a>
-        <span>·</span>
-        <a href="experience.html" class="hover:text-ink transition-colors" data-i18n="nav.experience">02. Kinh Nghiệm</a>
-        <span>·</span>
-        <a href="test001.pdf" target="_blank" class="text-ink hover:text-bordeaux transition-colors">CV (PDF) ↗</a>
-      </div>
+  <footer class="w-full pt-8 pb-6 border-t border-neutral-300 dark:border-neutral-800 mt-16 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-medium text-sub relative z-10">
+    <div>
+      <span class="font-bold text-main">VÕ KHƯƠNG DUY</span> - Ho Chi Minh City, Vietnam
+    </div>
+    <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+      <a href="mailto:vokhuongduy912@gmail.com" class="hover:text-main transition-colors">vokhuongduy912@gmail.com</a>
+      <span>-</span>
+      <a href="index.html" class="hover:text-main transition-colors" data-i18n="nav.portal">00. Mở Đầu</a>
+      <span>-</span>
+      <a href="projects.html" class="hover:text-main transition-colors" data-i18n="nav.projects">01. Dự Án</a>
+      <span>-</span>
+      <a href="experience.html" class="hover:text-main transition-colors" data-i18n="nav.experience">02. Kinh Nghiệm</a>
+      <span>-</span>
+      <a href="assets/CV.pdf" target="_blank" class="hover:text-main transition-colors">CV (PDF)</a>
     </div>
   </footer>
 
-  <script src="js/manifest.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      if (window.DAPORT_MANIFEST && window.DAPORT_MANIFEST.folios) {
-        const folios = window.DAPORT_MANIFEST.folios;
-        const totalArtifacts = folios.reduce((acc, f) => acc + (f.files?.length || 0) + (f.visuals?.length || 0), 0);
-        const el = document.getElementById("portal-folio-count");
-        if (el) {
-          el.textContent = `${String(folios.length).padStart(2, "0")} Projects · ${totalArtifacts} Artifacts`;
-        }
-      }
-    });
-  </script>
 </body>
 </html>

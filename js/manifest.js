@@ -1,6 +1,6 @@
 window.DAPORT_MANIFEST = {
   "repoName": "DAport",
-  "githubBaseUrl": "https://github.com/username/DAport/tree/main/",
+  "githubBaseUrl": "https://github.com/dvsaigonese/portfolio/tree/main/",
   "folios": [
     {
       "id": "01",
