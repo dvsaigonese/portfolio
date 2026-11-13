@@ -1,31 +1,31 @@
-# 📊 Data Analytics Portfolio — Vo Khuong Duy
+# Data Analytics Portfolio - Vo Khuong Duy
 
 ![Data Analytics](https://img.shields.io/badge/Focus-Data_Analytics_&_BI-722F37?style=for-the-badge)
 ![SQL](https://img.shields.io/badge/SQL-MySQL_&_PostgreSQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-Pandas_&_Seaborn-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Power BI](https://img.shields.io/badge/Power_BI-DAX_&_Modeling-F2C811?style=for-the-badge&logo=powerbi&logoColor=black)
 
-Hi! I am **Vo Khuong Duy** — a Data Analyst graduated with a Bachelor's degree in **Software Engineering** from **Saigon University** (Ho Chi Minh City, Vietnam).
+Hi! I am **Vo Khuong Duy** - a Data Analyst graduated with a Bachelor's degree in **Software Engineering** from **Saigon University** (Ho Chi Minh City, Vietnam).
 
-I combine my knowledge of relational databases with business analysis and data visualization to solve real-world problems — or sometimes, simply to tell a clear story through what I see in the data.
+I combine my knowledge of relational databases with business analysis and data visualization to solve real-world problems - or sometimes, simply to tell a clear story through what I see in the data.
 
 ---
 
-## 🌐 Live Interactive Web Portfolio
+## Live Interactive Web Portfolio
 
 This repository hosts both my **raw project files** and my **interactive web portfolio**.  
 Instead of clicking through folders manually, you can browse all dashboards, read full `README.md` reports, view SQL/Python/Notebook code, and preview sample `.CSV` data directly on the web:
 
-👉 **[Visit Live Web Portfolio: dvsaigonese.github.io/portfolio](https://dvsaigonese.github.io/portfolio/)**
+**[Visit Live Web Portfolio: dvsaigonese.github.io/portfolio](https://dvsaigonese.github.io/portfolio/)**
 
 * **00. Home (`index.html`):** Quick introduction, core skills, and contact info.
 * **01. Projects (`projects.html`):** Built-in repository explorer to view Power BI dashboards, `.sql` scripts, `.ipynb` notebooks, `.dax` measures, and `.csv` data previews directly in the browser.
 * **02. Experience (`experience.html`):** Behind-the-scenes work stories at **BEPRO11**, **DOTB**, and **Goal-Line x VGF**, with sample reports and data tables attached.
-* 📄 **[View My CV (PDF)](./assets/CV.pdf)**
+* **[View My CV (PDF)](./assets/CV.pdf)**
 
 ---
 
-## 📂 Featured Data Analytics Projects
+## Featured Data Analytics Projects
 
 You can also click directly into each folder below to check the source code and documentation on GitHub:
 
@@ -38,7 +38,7 @@ You can also click directly into each folder below to check the source code and 
 
 ---
 
-## 🛠️ Tech Stack & Skills
+## Tech Stack & Skills
 
 * **Business Intelligence & Visualization:** `Power BI` (DAX, Star Schema Data Modeling, Power Query), KPI Dashboarding, Cohort & Retention Analysis, RFM Segmentation, Funnel Conversion, `Excel`.
 * **Databases & SQL:** `MySQL`, `PostgreSQL (Supabase)`, Relational Schema Design, B-Tree Indexing, Window Functions (`LAG`, `RANK`, `DENSE_RANK`, `PERCENT_RANK`, `NTILE`), Complex CTEs, SQL Views.
@@ -47,7 +47,7 @@ You can also click directly into each folder below to check the source code and 
 
 ---
 
-## 🗂️ Repository Structure
+## Repository Structure
 
 ```text
 portfolio/
@@ -75,7 +75,7 @@ portfolio/
 
 ---
 
-## 📬 Contact
+## Contact
 
 * **Full Name:** Vo Khuong Duy
 * **Location:** Ho Chi Minh City, Vietnam
